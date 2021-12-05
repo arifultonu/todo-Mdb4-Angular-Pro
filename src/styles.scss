@@ -1,0 +1,134 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ng-uikit-pro-standard/assets/scss/core/colors';
+@import '~ng-uikit-pro-standard/assets/scss/core/variables';
+@import '~ng-uikit-pro-standard/assets/scss/core/variables-pro';
+
+@import '~ng-uikit-pro-standard/assets/scss/sections-pro/_contacts-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/sections-pro/_magazine-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/sections-pro/_pricing-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/sections-pro/_social-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/sections-pro/_team-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/sections-pro/_templates-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/sections-pro/_testimonials-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/addons-pro/_blog-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/addons-pro/_chat-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/addons-pro/_ecommerce-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/addons-pro/_steppers-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/addons-pro/_timeline-pro.scss';
+@import '~ng-uikit-pro-standard/assets/scss/addons-pro/_timelines-pro.scss';
+
+body {
+  background-color: #eee;
+}
+
+.card.card-cascade .view.gradient-card-header {
+  padding: 1rem 1rem;
+  text-align: center;
+}
+
+.card.card-cascade h3,
+.card.card-cascade h4 {
+  margin-bottom: 0px;
+}
+
+.login-card {
+  background-color: rgba(229, 228, 255, 0.2);
+}
+
+.blue-gradient {
+  background: -webkit-linear-gradient(50deg, #45cafc, #303f9f);
+  background: linear-gradient(40deg, #45cafc, #4285f4);
+}
+
+.datepickers .md-form,
+.inputs .md-form {
+  margin-top: 0 !important;
+}
+
+.modal-full-height.modal-bottom > .modal-content {
+  position: absolute !important;
+  bottom: 0;
+}
+
+.btn.btn-sm {
+  padding: .5rem 1rem !important;
+  font-size: .70rem !important;
+}
+
+.md-form.md-outline {
+  position: relative !important;
+  margin-top: .5rem !important;
+  margin-bottom: .5rem !important;
+}
+
+// .view {
+//   .full-bg-img.mask {
+//     //overflow-y: scroll;
+//   }
+// }
+
+/////////Auto fill////////////
+@-webkit-keyframes autofill {
+  to {
+  color: #666;
+  background: transparent; } }
+  
+  @keyframes autofill {
+  to {
+  color: #666;
+  background: transparent; } }
+  
+  input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+  
+  .md-form > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label {
+    transform: translateY(-14px);
+  }
+
+
+  //Data Table
+  table.table-sm td, table.table-sm th {
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
+}
+
+.sticky-top {
+  z-index: 10;
+  background-color: lightgrey !important;
+}
+
+pre{
+  white-space: break-spaces;
+  font-family: "Roboto", sans-serif !important;
+  font-size: .9rem !important;
+  font-weight: 300 !important;  
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+
+//Select List
+mdb-select.mdb-select-outline>label.active {
+  top: 9px !important;  
+}
+
+mdb-select.mdb-select-outline>label.active { 
+  font-weight: 500 !important;
+  font-size: .8rem !important;
+  }
+
+mdb-select.mdb-select-outline .single .value {
+  padding-top: 7px !important; 
+}
+
+//md-form
+.md-form {
+  margin-bottom: 1rem !important;
+  position: relative;
+  margin-top: 1rem !important;
+}
+
+

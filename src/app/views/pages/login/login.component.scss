@@ -1,0 +1,60 @@
+
+.intro-header {
+  height: unset !important;
+}
+.intro-2 {
+  background: url('/assets/img/swift-login-bg2.png')no-repeat center center;
+}
+.view {
+  height: 100vh !important;
+}
+
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #3f51b5 !important;
+  }
+}
+.rgba-gradient .full-bg-img {
+  background: linear-gradient(45deg, rgba(83, 125, 210, 0.4), rgba(178, 30, 123, 0.4) 100%);
+}
+.full-bg-img {
+  height: 100%;
+}
+.card {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.md-form .prefix {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+.md-form label {
+  color: #ffffff;
+}
+h6 {
+  line-height: 1.7;
+}
+@media (max-width: 740px) {
+  .full-height,
+  .full-height body,
+  .full-height header,
+  .full-height header .view {
+    height: 1040px;
+  }
+}
+
+@-webkit-keyframes autofill {
+  to {
+    color: #666;
+    background: transparent; } }
+
+@keyframes autofill {
+  to {
+    color: #666;
+    background: transparent; } }
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }

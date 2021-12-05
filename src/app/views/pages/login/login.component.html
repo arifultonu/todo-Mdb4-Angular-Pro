@@ -1,0 +1,187 @@
+<!--Intro Section-->
+<section class="view intro intro-2">
+	<div class="full-bg-img mask rgba-gradient">
+		<div class="container flex-center">
+			<div class="d-flex align-items-center content-height w-100">
+
+				<div class="row flex-center pt-5 mt-3 w-100">
+
+					<div class="col-md-6 text-center text-md-left mb-5">
+						<div class="text-white">
+						</div>
+					</div>
+
+					<div class="pl-5 col-md-6 col-xl-5 offset-xl-1">
+						<!--Form-->
+						<form>
+							<mdb-card class="ml-5 mb-5 wow fadeInRight" data-wow-delay="0.3s">
+								<mdb-card-body>
+									<div class="text-center">
+										<h3 class="white-text">
+											<span class="mb-0 fas .z-depth-1-half">
+												<img src="../../../assets/img/logo-login.png"
+													class="img-fluid flex-center" alt="e-Swift">
+											</span>
+										</h3>
+										<hr class="hr-blue">
+									</div>
+									<!--Body-->
+									<!-- <div class="md-form">
+										<input mdbInput mdbValidate type="text" id="form3" class="text-white form-control"
+											[(ngModel)]="userId" [ngModelOptions]="{standalone: true}" #input="ngModel" required>
+										<label for="form3" class="text-white">
+											<mdb-icon fas icon="user" class="text-white active"></mdb-icon>
+											User Name
+										</label>
+										<mdb-error *ngIf="input.invalid && (input.dirty || input.touched)">User Name Required!</mdb-error>									</div>
+									
+										<div class="md-form">
+										<input mdbInput mdbValidate type="password" id="form4" class="text-white form-control"
+											[(ngModel)]="password" [ngModelOptions]="{standalone: true}" #input="ngModel" required>
+										<label for="form4" class="text-white">
+											<mdb-icon fas icon="lock" class="text-white active"></mdb-icon>
+											Password
+										</label>
+										<mdb-error *ngIf="input.invalid && (input.dirty || input.touched)">Password Required!</mdb-error>
+									</div> -->
+
+									<!-- $2a$10$9Vom8mFpYSiXXsH2Etk8GeocURHo3HolUeFCBO3wGDrPsHwZZDahC -->
+									
+									<div class="md-form">
+										<input mdbInput type="text" id="form3" class="text-dark form-control"
+											[(ngModel)]="userId" [ngModelOptions]="{standalone: true}">
+										<label for="form3" class="text-white">
+											<mdb-icon fas icon="user" class="text-dark active"></mdb-icon>
+											<span style="color:#000; padding-left: 15px; font-weight: 300;">User ID</span>
+										</label>
+									</div>
+									<div class="md-form">
+										<input mdbInput type="password" id="form4" class="text-dark form-control"
+											[(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+										<label for="form4" class="text-white">
+											<mdb-icon fas icon="lock" class="text-dark active"></mdb-icon>
+											<span style="color:#000; padding-left: 15px; font-weight: 300;">Password</span>
+										</label>
+									</div>
+
+
+
+									<!-- <div class="inline-ul text-center d-flex justify-content-center">
+										<div class="p-2 md-form">
+											<input mdbInput type="text" id="form3" class="text-white form-control">
+											<label for="form3" class="text-white">
+												Captcha Code
+											</label>
+										</div>
+										<div class="p-2 md-form">
+											<input mdbInput type="text" id="form3" class="text-white form-control">
+											<label for="form3" class="text-white">
+												Enter Captcha
+											</label>
+										</div>
+									</div> -->
+
+									<!-- <div class="text-center alert alert-danger flex-center" role="alert"
+										*ngIf='invalidLogin'>{{errorMessage}}
+									</div> -->
+
+									<div class="text-center">
+										<!-- <button (click)="doLoginWithJWTAuth()" mdbBtn color="primary" rounded="true"
+											size="md" mdbWavesEffect routerLinkActive="active" [disabled]="loading">
+											<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+											Sign In</button> -->
+
+										<button mdbBtn color="primary" rounded="true" size="md" mdbWavesEffect
+											routerLink="/dashboards/v1" routerLinkActive="active" [disabled]="loading">
+											<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+											Sign In</button>
+
+										<hr class="hr-blue">
+										<div class="inline-ul text-center d-flex justify-content-center">
+											<div class="p-2 form-check">
+												<mdb-checkbox [default]="true" [checked]="true" class="text-dark">
+													Remember me </mdb-checkbox>
+											</div>
+											<a routerLink="/forgot-password" routerLinkActive="active" class="p-2 text-green">
+												Forgot Password? </a>
+										</div>
+									</div>
+
+								</mdb-card-body>
+
+							</mdb-card>
+						</form>
+						<!--/.Form-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+<!-- 
+<div id="intro" class="bg-image shadow-2-strong">
+	<div class="mask d-flex align-items-center h-100">
+		<div class="container">
+
+			<div class="col-xl-4 col-lg-6 col-md-8 col-sm-12 mx-auto alert alert-danger flex-center" role="alert"
+				*ngIf='invalidLogin'>{{errorMessage}}
+			</div>
+
+			<div class="row d-flex flex-row-reverse">
+				<div rounded="true" class="p-2 col-xl-4 col-md-8 bg-white text-center p-3 rounded-10 shadow-5-strong">
+
+					<form>
+						<span class="mb-0 fas .z-depth-1-half">
+							<img src="../../../assets/img/swift-logo-login.png" class="img-fluid flex-center"
+								alt="e-Swift">
+						</span>
+						<hr class="mb-4">
+						<input type="email" id="defaultRegisterFormEmail" class="form-control mb-4"
+							placeholder="E-mail/UserName" name="userName" [(ngModel)]="userId">
+
+						<input type="password" id="defaultRegisterFormPassword" class="form-control mb-4"
+							placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"
+							name="password" [(ngModel)]="password">
+
+						<div class="form-row mb-4">
+							<div class="col">
+								<input type="text" id="defaultRegisterFormFirstName" class="form-control"
+									placeholder="Captcha">
+							</div>
+							<div class="col">
+								<input type="text" id="defaultRegisterFormLastName" class="form-control"
+									placeholder="Input Captcha">
+							</div>
+						</div>
+
+					
+						<button routerLink="/dashboards/v1" routerLinkActive="active" rounded="true" mdbBtn mdbWavesEffect
+							color="primary" size="md" class="waves-effect waves-light w-75" type="submit"
+							[disabled]="loading">
+							<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+							Sign In
+						</button>
+
+						<hr>
+
+						<div class="d-flex justify-content-around">
+							<div>
+								<mdb-checkbox checked="true">Remember me</mdb-checkbox>
+							</div>
+							<div>
+								<a href="#">Forgot password?</a>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</div> -->

@@ -1,0 +1,159 @@
+<form [formGroup]="cbsDataMessageForm">
+
+    <!--Top Table UI-->
+    <mdb-card class="my-3">
+        <mdb-card-body>
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-xl-2 col-lg-6 col-md-12">
+                    <!-- <div class="md-form md-outline">
+                        <div class="md-form md-outline">
+                            <input formControlName="branchCode" type="text" id="branchCode" class="form-control"
+                                mdbInput>
+                            <label for="branchCode">Branch Code</label>
+                        </div>
+                    </div> -->
+                    <div class="md-form">
+                        <input mdbInput type="text" formControlName="branchCode" id="branchCode" class="form-control" readonly>
+                        <label for="branchCode" class="">Branch Code:</label>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="md-form">
+                        <!-- <mdb-select [outline]="true" [options]="messageTypeSelect" label="Message Type"
+                            formControlName="messageType">
+                        </mdb-select> -->
+                        <mdb-select [filterEnabled]="true" [options]="messageTypeSelect" label="Message Type:"
+                            formControlName="messageType" placeholder="Choose your option">
+                        </mdb-select>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-xl-4 col-lg-6 col-md-12 mx-auto">
+                    <div class="md-form">
+                        <!-- <mdb-select [outline]="true" [options]="pendingDocNoSelect" label="Pending Document No."
+                            formControlName="pendingDocNo">
+                        </mdb-select> -->
+                        <mdb-select [filterEnabled]="true" [options]="pendingDocNoSelect" label="Pending Document No.:"
+                            formControlName="pendingDocNo" placeholder="Choose your option">
+                        </mdb-select>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-xl-2 col-lg-6 col-md-6 mx-auto">
+                    <div class="md-form md-outline d-flex justify-content-center">
+                        <button mdbBtn color="primary" size="sm" class="me-2 ml-4 px-2 waves-effect waves-light"
+                            mdbWavesEffect (click)="getCbsMessageDataList()"> Data Load
+                            <mdb-icon fas icon="download" class="me-2"></mdb-icon>
+                        </button>
+                    </div>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </mdb-card-body>
+    </mdb-card>
+    <!--Top Table UI --------------------//////////////////-------------->
+
+    <mdb-card cascade="true" narrower="true" [ngClass]="{ 'z-depth-0': !shadows }" class="mt-5">
+        <!--Card image-->
+        <div
+            class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-center align-items-center">
+            <a href="" class="white-text mx-3" size="sm">CBS Data for Message Creation</a>
+        </div>
+        <!--/Card image-->
+
+        <div class="px-4">
+            <div class="table-wrapper">
+                <div class="row mt-0">
+                    <div class="col-md-6 mx-auto">
+                        <div class="md-form">
+                            <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()"
+                                id="search-input" mdbInput [ngModelOptions]="{standalone: true}">
+                            <label for="search-input">Search</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Table-->
+                <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true"
+                    class="table-bordered table-responsive-md z-depth-1 text-center" small="true">
+                    <thead class="sticky-top">
+                        <tr>
+                            <th [mdbTableSort]="elements" sortBy="tagSerial">Srl
+                                <mdb-icon fas icon="sort"></mdb-icon>
+                            </th>
+                            <th [mdbTableSort]="elements" sortBy="messageType">Message
+                                Type
+                                <mdb-icon fas icon="sort"></mdb-icon>
+                            </th>
+                            <th [mdbTableSort]="elements" sortBy="promts">CBS Filed
+                                and Swift Tag
+                                <mdb-icon fas icon="sort"></mdb-icon>
+                            </th>
+                            <th [mdbTableSort]="elements" sortBy="cbsValue">Field
+                                Description
+                                <mdb-icon fas icon="sort"></mdb-icon>
+                            </th>
+                            <th>Action
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody #row>
+                        <tr *ngFor="let el of elements; let i = index">
+                            <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                                scope="row">{{el.tagSerial}}
+                            </th>
+                            <td
+                                *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                {{el.messageType}}
+                            </td>
+                            <td class="text-left" 
+                                *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                {{el.promts}}
+                            </td>
+                            <td class="text-left"
+                                *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                {{el.cbsValue}}
+                            </td>
+                            <td
+                                *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                <button *ngIf="el.cbsFlag == 'Y'" mdbBtn color="warning" size="sm" mdbWavesEffect
+                                    (click)="editRow(el)">Edit</button>
+                                <!-- <button mdbBtn color="danger" size="sm" mdbWavesEffect
+                                    (click)="removeRow(el)">Remove</button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot class="grey lighten-5 w-100">
+                        <tr>
+                            <td colspan="5">
+                                <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
+                                    [searchDataSource]="elements">
+                                </mdb-table-pagination>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <!--Table-->
+
+                <div class="d-flex justify-content-center my-2">
+                    <button mdbBtn color="primary" size="sm" mdbWavesEffect (click)="submitCbsMessageData()">
+                        Submit <mdb-icon fas icon="paper-plane" class="me-2"></mdb-icon>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </mdb-card>
+
+</form>

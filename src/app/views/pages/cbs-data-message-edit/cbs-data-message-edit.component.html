@@ -1,0 +1,35 @@
+<div class="modal-content" [config]="{backdrop: false, ignoreBackdropClick: false}">
+    <div class="modal-header">
+      <button type="button" mdbBtn color="danger" size="sm" class="close pull-right mt-.5 me-1 " aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true"><mdb-icon fas icon="times"></mdb-icon></span>
+      </button>
+      <h6 class="modal-title w-100" id="myModalLabel">Edit: {{editableRow.tagSerial}}</h6>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form">
+        <div class="md-form form-sm">
+          <input id="messageType" type="text" class="form-control form-control-sm" formControlName="messageType" mdbInput readonly >
+          <label for="messageType">Message Type</label>
+        </div>
+        <div class="md-form form-sm">
+          <input id="promts" type="text" class="form-control form-control-sm" formControlName="promts" mdbInput readonly >
+          <label for="promts">CBS Filed and Swift Tag:</label>
+        </div>
+        <div class="md-form form-sm">
+          <textarea id="cbsValue" type="text" class="md-textarea form-control form-control-sm" rows="3" formControlName="cbsValue" mdbInput mdbValidate
+                 [validateSuccess]="false"></textarea>
+          <label for="cbsValue">Field Description:</label>
+          <mdb-error *ngIf="cbsValue.invalid && (cbsValue.dirty || cbsValue.touched)">Input is required</mdb-error>
+        </div>
+       
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" mdbBtn color="secondary" class="waves-light" size="sm" aria-label="Close"
+              (click)="modalRef.hide()" mdbWavesEffect>Close
+      </button>
+      <button type="button" mdbBtn color="primary" class="relative waves-light" size="sm" mdbWavesEffect
+              [disabled]="form.invalid" (click)="editRow()">Save
+      </button>
+    </div>
+  </div>
