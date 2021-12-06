@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   specialPage: boolean;
 
   private specialPages: any[] = [    
-    '/login',
+   '/login',
     // '/pages/register',
     // '/pages/lock',
     // '/pages/pricing',

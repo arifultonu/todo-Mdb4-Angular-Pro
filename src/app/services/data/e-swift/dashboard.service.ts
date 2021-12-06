@@ -4,6 +4,7 @@ import { JPA_API_URL } from 'src/app/app.constants';
 import { Parameters } from 'src/app/parameters';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Todo } from 'src/app/views/dashboards/common/stats-card/stats-card.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +13,17 @@ export class DashboardService {
     private httpClient: HttpClient
   ) { }
 
-  getTotalNumberOfOutgoingMessageService(params: Parameters): Observable<any> {
-    console.log();
-    return this.httpClient.post(`${JPA_API_URL}/e-swift/getTotalNumberOfOutgoingMsg`, params)
+  getAllTaskByUserIdService(adminUserId: String): Observable<any> {
+    console.log("Service adminUserId: "+adminUserId );
+    return this.httpClient.get<Todo[]>(`${JPA_API_URL}/todo/getAllTaskByUserId/${adminUserId}`)
     .pipe(catchError(this.handleError));
   }
 
+  deleteTask(id: string){
+    console.log("ID: "+ id);
+    return this.httpClient.delete(`${JPA_API_URL}/todo/deleteTaskById/${id}`)
+    //.pipe(catchError(this.handleError));
+  }
 
 
   private handleError(errorResponse: HttpErrorResponse){

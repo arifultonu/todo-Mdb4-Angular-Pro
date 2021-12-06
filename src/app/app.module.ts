@@ -19,6 +19,7 @@ import {NavigationModule} from './main-layout/navigation/navigation.module';
 import { AppCommons } from './app.commons';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpIntersepterBasicAuthService } from './services/configuration/http-intersepter-basic-auth.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,7 @@ import { HttpIntersepterBasicAuthService } from './services/configuration/http-i
 // }
 ],
 providers: [
-  MDBSpinningPreloader, ToastService, AppCommons,
+  MDBSpinningPreloader, ToastService, AppCommons, DatePipe,
   { provide: HTTP_INTERCEPTORS, useClass: HttpIntersepterBasicAuthService, multi: true },
 ],
 bootstrap: [AppComponent],
