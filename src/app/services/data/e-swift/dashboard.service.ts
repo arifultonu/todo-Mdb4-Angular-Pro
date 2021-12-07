@@ -22,7 +22,7 @@ export class DashboardService {
   deleteTask(id: string){
     console.log("ID: "+ id);
     return this.httpClient.delete(`${JPA_API_URL}/todo/deleteTaskById/${id}`)
-    //.pipe(catchError(this.handleError));
+    .pipe(catchError(this.handleError));
   }
 
 

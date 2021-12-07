@@ -189,39 +189,40 @@
 
                     <tbody #row>
                         <tr *ngFor="let el of elements; let i = index">
-                            <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                            <th class="text-center"
+                            *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
                                 scope="row">
                                 {{i+1}}
                             </th>
-                            <td
+                            <td class="text-center"
                                 *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
                                  (click)="viewDetails(el.taskId)" type="button">
                                 {{el.taskDetails}}
                             </td>
-                            <td class="text-left"
+                            <td class="text-center"
                                 *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                {{el.assigneeId}}
+                                {{el.assignUserId}}
                             </td>
-                            <td class="text-left"
+                            <td class="text-center"
                                 *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                 {{el.assignDate}}
                             </td>
-                            <td class="text-left"
+                            <td class="text-center"
                                 *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                 {{el.dueDate}}
                             </td>
-                            <td class="text-left"
+                            <td class="text-center"
                                 *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                 {{el.priorityId}}
                             </td>
-                            <td class="text-left"
+                            <td class="text-center"
                                 *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                 {{el.taskStatusId}}
                             </td>
                             
-                            <td
+                            <td class="text-center"
                                 *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                  <span style="text-align: center;"><mdb-icon fas icon="trash-alt" size="lg" class="red-text pr-3"  aria-hidden="true" (click)="deleteTask(el.id)" type="button"></mdb-icon></span> 
+                                  <span><mdb-icon fas icon="trash-alt" size="lg" class="red-text pr-3"  aria-hidden="true" (click)="deleteTask(el.id)" type="button"></mdb-icon></span> 
                                 <!-- <button mdbBtn color="danger" size="sm" mdbWavesEffect
                                         (click)="removeRow(el)">Remove</button> -->
                             </td>

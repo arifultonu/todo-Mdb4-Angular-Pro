@@ -143,18 +143,20 @@ export class StatsCardComponent implements OnInit {
   deleteTask(id: any){
     console.log(`delete todo ${id}` );
     this.dashboardService.deleteTask(id).subscribe (
-      data => {
+      data => {        
+        this.map=data;
+        console.log(data);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
         this.toastrService.clear(); 
-        this.toastrService.success( `Delete of Task: ${id} , Successful!`, 'Success!', options);
+        this.toastrService.success( this.map.responseMessage, 'Success!', options);
         this.ngOnInit();
       }
-      // ,(error: any) => {
-      //   console.log(error);
-      //   const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-      //   this.toastrService.clear();
-      //   this.toastrService.error(error, 'Sorry!', options);
-      // }
+      ,(error: any) => {
+        console.log(error);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.error(error, 'Sorry!', options);
+      }
       );
     
   }
