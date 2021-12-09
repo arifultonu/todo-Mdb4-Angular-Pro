@@ -25,6 +25,20 @@ export class DashboardService {
     .pipe(catchError(this.handleError));
   }
 
+  getAllUserDataListService(){
+    return this.httpClient.get(`${JPA_API_URL}/todo/getAllUserSelectDataList`)
+    .pipe(catchError(this.handleError));
+  }
+
+  getAllPriorityDataService(){
+    return this.httpClient.get(`${JPA_API_URL}/todo/getAllPrioritySelectDataList`)
+    .pipe(catchError(this.handleError));
+  }
+  getAllStatusDataService(){
+    return this.httpClient.get(`${JPA_API_URL}/todo/getAllStatusSelectDataList`)
+    .pipe(catchError(this.handleError));
+  }
+
 
   private handleError(errorResponse: HttpErrorResponse){
     if(errorResponse.error instanceof ErrorEvent){

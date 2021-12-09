@@ -5,6 +5,7 @@ import { DashboardService } from 'src/app/services/data/e-swift/dashboard.servic
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { SelectCodeNameList } from 'src/app/app.component';
 
 export interface Todo {
   id: number,
@@ -36,7 +37,9 @@ export class StatsCardComponent implements OnInit {
   @ViewChild('row', { static: true }) row: ElementRef;
   elements: Todo[] = [];
   modalRef: MDBModalRef;
-
+  allUserListSelect: SelectCodeNameList[] = [];
+  allPriorityListSelect: SelectCodeNameList[] = [];
+  allStatusListSelect: SelectCodeNameList[] = [];
   parameters: any = new Parameters();
   map: any;
   searchText: string = '';
@@ -72,8 +75,42 @@ export class StatsCardComponent implements OnInit {
       'searchText': new FormControl(),
     });
     this.getAllTaskByUserIdService(); 
-
+    this.getAllUserDataList();
+    this.getAllPriorityDataList();
+    this.getAllStatusDataList();
   }
+
+  getAllStatusDataList(){
+  this.dashboardService.getAllStatusDataService().subscribe(data => {
+    this.map = data;
+    this.allStatusListSelect = this.map.allStatusDataList;
+  }, (error: any) => {
+    const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+    this.toastrService.clear();
+    this.toastrService.error(error, 'Sorry!', options);
+  });
+}
+  getAllPriorityDataList(){
+  this.dashboardService.getAllPriorityDataService().subscribe(data => {
+    this.map = data;
+    this.allPriorityListSelect = this.map.allPriorityDataList;
+  }, (error: any) => {
+    const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+    this.toastrService.clear();
+    this.toastrService.error(error, 'Sorry!', options);
+  });
+}
+
+getAllUserDataList(){
+  this.dashboardService.getAllUserDataListService().subscribe(data => {
+    this.map = data;
+    this.allUserListSelect = this.map.allUserDataList;
+  }, (error: any) => {
+    const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+    this.toastrService.clear();
+    this.toastrService.error(error, 'Sorry!', options);
+  });
+}
 
   prevent(event) {
     event.preventDefault();
