@@ -34,10 +34,18 @@ export class DashboardService {
     return this.httpClient.get(`${JPA_API_URL}/todo/getAllPrioritySelectDataList`)
     .pipe(catchError(this.handleError));
   }
+  
   getAllStatusDataService(){
     return this.httpClient.get(`${JPA_API_URL}/todo/getAllStatusSelectDataList`)
     .pipe(catchError(this.handleError));
   }
+
+updateTask(paramBody){
+  return this.httpClient.put(`${JPA_API_URL}/todo/updateAllTaskAssign`, paramBody)
+    .pipe(catchError(this.handleError));
+}
+
+
 
 
   private handleError(errorResponse: HttpErrorResponse){

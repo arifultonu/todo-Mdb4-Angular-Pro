@@ -36,6 +36,7 @@ export class StatsCardComponent implements OnInit {
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild('row', { static: true }) row: ElementRef;
   elements: Todo[] = [];
+  todo: Todo[] = [];
   modalRef: MDBModalRef;
   allUserListSelect: SelectCodeNameList[] = [];
   allPriorityListSelect: SelectCodeNameList[] = [];
@@ -55,13 +56,14 @@ export class StatsCardComponent implements OnInit {
   maxVisibleItems: number = 10;
 
   statsCardForm: FormGroup;
+  editField: string;
 
   constructor(
     private router: Router,
     private cdRef: ChangeDetectorRef,
     private dashboardService: DashboardService,
     private toastrService: ToastService,
-    private datePipe:DatePipe
+    private datePipe: DatePipe
   ) { }
 
   @HostListener('input') oninput() {
@@ -74,43 +76,44 @@ export class StatsCardComponent implements OnInit {
     this.statsCardForm = new FormGroup({
       'searchText': new FormControl(),
     });
-    this.getAllTaskByUserIdService(); 
+    this.getAllTaskByUserIdService();
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
   }
 
-  getAllStatusDataList(){
-  this.dashboardService.getAllStatusDataService().subscribe(data => {
-    this.map = data;
-    this.allStatusListSelect = this.map.allStatusDataList;
-  }, (error: any) => {
-    const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-    this.toastrService.clear();
-    this.toastrService.error(error, 'Sorry!', options);
-  });
-}
-  getAllPriorityDataList(){
-  this.dashboardService.getAllPriorityDataService().subscribe(data => {
-    this.map = data;
-    this.allPriorityListSelect = this.map.allPriorityDataList;
-  }, (error: any) => {
-    const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-    this.toastrService.clear();
-    this.toastrService.error(error, 'Sorry!', options);
-  });
-}
+  getAllStatusDataList() {
+    this.dashboardService.getAllStatusDataService().subscribe(data => {
+      this.map = data;
+      this.allStatusListSelect = this.map.allStatusDataList;
+    }, (error: any) => {
+      const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+      this.toastrService.clear();
+      this.toastrService.error(error, 'Sorry!', options);
+    });
+  }
 
-getAllUserDataList(){
-  this.dashboardService.getAllUserDataListService().subscribe(data => {
-    this.map = data;
-    this.allUserListSelect = this.map.allUserDataList;
-  }, (error: any) => {
-    const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-    this.toastrService.clear();
-    this.toastrService.error(error, 'Sorry!', options);
-  });
-}
+  getAllPriorityDataList() {
+    this.dashboardService.getAllPriorityDataService().subscribe(data => {
+      this.map = data;
+      this.allPriorityListSelect = this.map.allPriorityDataList;
+    }, (error: any) => {
+      const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+      this.toastrService.clear();
+      this.toastrService.error(error, 'Sorry!', options);
+    });
+  }
+
+  getAllUserDataList() {
+    this.dashboardService.getAllUserDataListService().subscribe(data => {
+      this.map = data;
+      this.allUserListSelect = this.map.allUserDataList;
+    }, (error: any) => {
+      const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+      this.toastrService.clear();
+      this.toastrService.error(error, 'Sorry!', options);
+    });
+  }
 
   prevent(event) {
     event.preventDefault();
@@ -133,7 +136,6 @@ getAllUserDataList(){
       this.map = data;
       this.elements = this.map;
       console.log(this.elements);
-      console.log(this.map);
       if (this.elements.length > 0) {
         this.mdbTable.setDataSource(this.elements);
         this.elements = this.mdbTable.getDataSource();
@@ -155,58 +157,72 @@ getAllUserDataList(){
   }
 
 
-  // deleteTask(el: any) {
-  //   const elementIndex = this.elements.findIndex((elem: any) => el === elem);
-  //   this.mdbTable.removeRow(elementIndex);
-  //   this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-  //     el.id = (index + 1).toString();
-  //   });
-  //   this.mdbTable.setDataSource(this.elements);
-
-  // this.dashboardService.deleteTask(el.id).subscribe (
-  //     data => {
-  //       const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-  //       this.toastrService.clear(); 
-  //       this.toastrService.success( `Delete of Task: ${el.id} , Successful!`, 'Success!', options);
-  //       this.ngOnInit();
-  //     }
-
-
-
-  // }
-
-
-
-  deleteTask(id: any){
-    console.log(`delete todo ${id}` );
-    this.dashboardService.deleteTask(id).subscribe (
-      data => {        
-        this.map=data;
+  updateTask(paramBody){
+    this.dashboardService.updateTask(paramBody).subscribe(
+      data => {
+        this.map = data;
         console.log(data);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-        this.toastrService.clear(); 
-        this.toastrService.success( this.map.responseMessage, 'Success!', options);
+        this.toastrService.clear();
+        this.toastrService.success(this.map.responseMessage, 'Success!', options);
         this.ngOnInit();
-      }
-      ,(error: any) => {
+      }, (error: any) => {
         console.log(error);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
         this.toastrService.clear();
         this.toastrService.error(error, 'Sorry!', options);
       }
-      );
-    
+    );
+
   }
 
 
 
+  updateList(id: number, property: string, event: any) {
+    const editField = event.target.textContent;
+    this.elements[id][property] = editField;
+    console.log(this.elements);
+    this.todo = this.elements;
+    this.updateTask(this.todo);
+   // this.checkValidition(cbsField, editField, documentNo, messageType);
+  }
+
+  changeValue(id: number, property: any, event: any) {
+    this.editField = event.target.textContent;
+  }
 
 
+  add() {
+    if (this.elements.length > 0) {
+      const person = this.elements[0];
+      this.elements.push(person);
+      this.elements.splice(0, 1);
+    }
+  }
+
+  deleteTask(id: any) {
+    console.log(`delete todo ${id}`);
+    this.dashboardService.deleteTask(id).subscribe(
+      data => {
+        this.map = data;
+        console.log(data);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.success(this.map.responseMessage, 'Success!', options);
+        this.ngOnInit();
+      }, (error: any) => {
+        console.log(error);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.error(error, 'Sorry!', options);
+      }
+    );
+
+  }
 
 
   searchItems() {
     const prev = this.mdbTable.getDataSource();
-
     if (!this.searchText) {
       this.mdbTable.setDataSource(this.previous);
       this.elements = this.mdbTable.getDataSource();
@@ -226,36 +242,8 @@ getAllUserDataList(){
     });
   }
 
-
-
-  // getAllOpenTaskService() {
-  //   this.parameters.branchCode = "003"; 
-  //   this.dashboardService.getAllOpenTaskService(this.parameters).subscribe(data => {
-  //     this.map = data;     
-  //     console.log(this.map.totalOutgoingMessage);
-  //     this.totalOutgoingMsg = this.map.totalOutgoingMessageNo;
-  //     console.log(this.totalOutgoingMsg);
-  //   });
-  // }
-
-  // getAllPendingTaskService() {
-  //   this.parameters.branchCode = "003"; 
-  //   this.dashboardService.getAllPendingTaskService(this.parameters).subscribe(data => {
-  //     this.map = data;     
-  //     console.log(this.map.totalOutgoingMessage);
-  //     this.totalOutgoingMsg = this.map.totalOutgoingMessageNo;
-  //     console.log(this.totalOutgoingMsg);
-  //   });
-  // }
-
-
-
   viewDetails(taskId: any) {
 
   }
-
-
-
-
 
 }

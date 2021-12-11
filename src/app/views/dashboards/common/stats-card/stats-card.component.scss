@@ -1,3 +1,16 @@
+@media all and (min-width: 768px) {
+  tr  {
+    td {
+      vertical-align: middle !important;
+    }
+    span {
+      &:not([class]) {
+        padding: -1rem 0rem;
+      }
+    }
+  }
+}
+
 .cascading-admin-card {
   margin-top: 20px; }
   .cascading-admin-card .admin-up {
@@ -41,4 +54,11 @@
 .cascading-admin-card .admin-up mdb-icon {
   -webkit-box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+}
+
+.md-form{
+  padding-bottom: 0 !important;
+  padding-top: -10 !important;
+  margin-top: -10 !important;
+  margin-bottom: 0 !important;
 }

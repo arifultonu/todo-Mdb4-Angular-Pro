@@ -154,36 +154,30 @@
                                 <label for="search-input">Search</label>
                             </div>
                         </div>
-                       
+
                     </div>
                     <!--Table-->
                     <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true"
                         class="table-bordered table-responsive-md z-depth-1 text-center" small="true" mdbTableScroll
                         scrollX="true" maxWidth="1200">
+
                         <thead class="sticky-top black white-text">
                             <tr>
                                 <th [mdbTableSort]="elements" sortBy="i">Srl
-
                                 </th>
                                 <th [mdbTableSort]="elements" sortBy="taskDetails">Task
-
                                 </th>
                                 <th [mdbTableSort]="elements" sortBy="assigneeId">Assignee
-
-                                </th>
-                                <th [mdbTableSort]="elements" sortBy="assignDate">Assign Date
-
-                                </th>
-                                <th [mdbTableSort]="elements" sortBy="dueDate">Due Date
-
                                 </th>
                                 <th [mdbTableSort]="elements" sortBy="priorityId">Priority
-
                                 </th>
                                 <th [mdbTableSort]="elements" sortBy="taskStatusId">Status
-
                                 </th>
-                                <th>Delete
+                                <th [mdbTableSort]="elements" sortBy="assignDate">Assign Date
+                                </th>
+                                <th [mdbTableSort]="elements" sortBy="dueDate">Due Date
+                                </th>
+                                <th colspan="2">Action
                                 </th>
                             </tr>
                         </thead>
@@ -197,7 +191,8 @@
                                 </th>
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                                    (click)="viewDetails(el.taskId)" type="button">
+                                    (keyup)="changeValue(i, 'taskDetails',  $event)"
+                                    (blur)="updateList(i, 'taskDetails', $event)" contenteditable="true">
                                     {{el.taskDetails}}
                                 </td>
                                 <td class="text-center"
@@ -206,14 +201,6 @@
                                         formControlName="el.assignUserId" placeholder="Select Assignee">
                                     </mdb-select>
                                     <!-- {{el.assignUserId}} -->
-                                </td>
-                                <td class="text-center"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                    {{el.assignDate}}
-                                </td>
-                                <td class="text-center"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                    {{el.dueDate}}
                                 </td>
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
@@ -229,11 +216,38 @@
                                     </mdb-select>
                                     <!-- {{el.taskStatusId}} -->
                                 </td>
-
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                    <!-- <div class="md-form">
+                                        <input type="date" id="input" formControlName="el.assignDate" class="form-control" mdbInput>
+                                    </div> -->
+                                    {{el.assignDate}}
+                                </td>
+                                <td class="text-center"
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                    <!-- <div class="md-form">
+                                        <input type="date" formControlName="el.dueDate" id="input" class="form-control" mdbInput>
+                                    </div> -->
+                                    {{el.dueDate}}
+                                    <!-- <input type="date" id="dueDate" data-date-format="dd/mm/yyyy"
+                                    formControlName="el.dueDate" mdbInput> -->
+                                </td>
+
+
+                                <td class="text-center" style="width:2%"
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
-                                        <mdb-icon fas icon="trash-alt" size="lg" class="red-text pr-3"
+                                        <span type="button" color="info" size="sm" mdbWavesEffect>
+                                            <mdb-icon fas icon="comment-dots" size="lg"></mdb-icon>
+                                        </span>
+                                        <!-- <mdb-icon fas icon="block-alt" size="lg" class="red-text pr-3"
+                                            aria-hidden="true" (click)="deleteTask(el.id)" type="button"></mdb-icon> -->
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width:2%"
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                    <span>
+                                        <mdb-icon fas icon="trash-alt" size="lg" class="red-text"
                                             aria-hidden="true" (click)="deleteTask(el.id)" type="button"></mdb-icon>
                                     </span>
                                     <!-- <button mdbBtn color="danger" size="sm" mdbWavesEffect
@@ -242,7 +256,13 @@
                             </tr>
                         </tbody>
 
-                        <tfoot class="grey lighten-5 w-100">
+                        <span class="table-add float-right mb-3 mr-2">
+                            <a class="text-success" (click)="add()">
+                              <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+                            </a>
+                          </span>
+
+                        <tfoot class="grey lighten-5">
                             <tr>
                                 <td colspan="13">
                                     <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
@@ -251,6 +271,7 @@
                                 </td>
                             </tr>
                         </tfoot>
+                        
                     </table>
                     <!--Table-->
                 </div>
