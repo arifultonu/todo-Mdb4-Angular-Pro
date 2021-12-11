@@ -12,8 +12,8 @@ export interface Todo {
   assignUserId: string,
   taskId: string,
   taskDetails: string,
-  assignDate: Date,
-  dueDate: Date,
+  assignDate: string,
+  dueDate: string,
   priorityId: string,
   taskStatusId: String,
 
@@ -57,6 +57,8 @@ export class StatsCardComponent implements OnInit {
 
   statsCardForm: FormGroup;
   editField: string;
+
+
 
   constructor(
     private router: Router,
@@ -163,8 +165,8 @@ export class StatsCardComponent implements OnInit {
         this.map = data;
         console.log(data);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-        this.toastrService.clear();
-        this.toastrService.success(this.map.responseMessage, 'Success!', options);
+        // this.toastrService.clear();
+        // this.toastrService.success(this.map.responseMessage, 'Success!', options);
         this.ngOnInit();
       }, (error: any) => {
         console.log(error);
@@ -191,14 +193,64 @@ export class StatsCardComponent implements OnInit {
     this.editField = event.target.textContent;
   }
 
+  addNewTask(){
+    const paramBody = this.todo;
+    this.dashboardService.addNewTask(paramBody).subscribe(
+      data => {
+        this.map = data;
+        console.log(data);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+        // this.toastrService.clear();
+        // this.toastrService.success(this.map.responseMessage, 'Success!', options);
+        this.ngOnInit();
+      }, (error: any) => {
+        console.log(error);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.error(error, 'Sorry!', options);
+      }
+    );
+  }
 
-  add() {
-    if (this.elements.length > 0) {
-      const person = this.elements[0];
-      this.elements.push(person);
-      this.elements.splice(0, 1);
+ 
+  awaitingTaskList: Array<any> = [{"adminUserId": "2",
+  "assignUserId": "2",
+  "taskId": 2,
+  "taskDetails": "Task Assign page Rest API develop Test 2",
+  "assignDate": "08/12/2021",
+  "dueDate": "08/12/2021",
+  "priorityId": 1,
+  "taskStatusId": 1},
+  {"adminUserId": "2",
+  "assignUserId": "2",
+  "taskId": 2,
+  "taskDetails": "Task Assign page Rest API develop Test 2",
+  "assignDate": "08/12/2021",
+  "dueDate": "08/12/2021",
+  "priorityId": 1,
+  "taskStatusId": 1}];
+
+  add() {   
+    console.log("awaitingTaskList.length: "+this.awaitingTaskList.length);
+    if (this.awaitingTaskList.length > 0) {
+      console.log("Called!");
+      const task = this.awaitingTaskList[0];
+      console.log("task!: "+task);
+      this.elements.push(task);
+      this.awaitingTaskList.splice(0, 1);
     }
   }
+
+  // add() {
+  //   if (this.awaitingPersonList.length > 0) {
+  //     const person = this.awaitingPersonList[0];
+  //     this.personList.push(person);
+  //     this.awaitingPersonList.splice(0, 1);
+  //   }
+  // }
+
+
+  // awaitingTaskList
 
   deleteTask(id: any) {
     console.log(`delete todo ${id}`);

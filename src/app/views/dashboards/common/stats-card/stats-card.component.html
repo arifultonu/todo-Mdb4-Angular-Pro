@@ -189,7 +189,7 @@
                                     scope="row">
                                     {{i+1}}
                                 </th>
-                                <td class="text-center"
+                                <td class="text-left"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
                                     (keyup)="changeValue(i, 'taskDetails',  $event)"
                                     (blur)="updateList(i, 'taskDetails', $event)" contenteditable="true">
@@ -198,40 +198,62 @@
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <mdb-select [filterEnabled]="true" [options]="allUserListSelect"
-                                        formControlName="el.assignUserId" placeholder="Select Assignee">
+                                        [(ngModel)]="el.assignUserId" [ngModelOptions]="{standalone: true }"
+                                        placeholder="Select Assignee" (keyup)="changeValue(i, 'assignUserId',  $event)"
+                                        (blur)="updateList(i, 'assignUserId', $event)">
                                     </mdb-select>
                                     <!-- {{el.assignUserId}} -->
                                 </td>
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <mdb-select [filterEnabled]="true" [options]="allPriorityListSelect"
-                                        formControlName="el.priorityId" placeholder="Select Assignee">
+                                        [(ngModel)]="el.priorityId" [ngModelOptions]="{standalone: true }"
+                                        placeholder="Select Priority" (keyup)="changeValue(i, 'priorityId',  $event)"
+                                        (blur)="updateList(i, 'priorityId', $event)">
                                     </mdb-select>
                                     <!-- {{el.priorityId}} -->
                                 </td>
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <mdb-select [filterEnabled]="true" [options]="allStatusListSelect"
-                                        formControlName="el.taskStatusId" placeholder="Select Status">
+                                        [(ngModel)]="el.taskStatusId" [ngModelOptions]="{standalone: true }"
+                                        placeholder="Select Status" (keyup)="changeValue(i, 'taskStatusId',  $event)"
+                                        (blur)="updateList(i, 'taskStatusId', $event)">
                                     </mdb-select>
                                     <!-- {{el.taskStatusId}} -->
                                 </td>
-                                <td class="text-center"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                    <!-- <div class="md-form">
-                                        <input type="date" id="input" formControlName="el.assignDate" class="form-control" mdbInput>
-                                    </div> -->
+
+                                <td class="text-left"
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                                    (keyup)="changeValue(i, 'assignDate',  $event)"
+                                    (blur)="updateList(i, 'assignDate', $event)" contenteditable="true">
                                     {{el.assignDate}}
                                 </td>
-                                <td class="text-center"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                    <!-- <div class="md-form">
+
+                                <!-- <td class="text-center" -->
+                                <!-- *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"> -->
+                                <!-- <div class="md-form">
+                                        <input type="date" id="input" formControlName="el.assignDate" class="form-control" mdbInput>
+                                    </div> -->
+                                <!-- {{el.assignDate}} -->
+                                <!-- </td> -->
+
+                                <td class="text-left"
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                                    (keyup)="changeValue(i, 'dueDate',  $event)"
+                                    (blur)="updateList(i, 'dueDate', $event)" contenteditable="true">
+                                    {{el.dueDate}}
+                                </td>
+
+                                <!-- <td class="text-center" -->
+                                <!-- *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"> -->
+                                <!-- <div class="md-form">
                                         <input type="date" formControlName="el.dueDate" id="input" class="form-control" mdbInput>
                                     </div> -->
-                                    {{el.dueDate}}
-                                    <!-- <input type="date" id="dueDate" data-date-format="dd/mm/yyyy"
+                                <!-- {{el.dueDate}} -->
+                                <!-- <input type="date" id="dueDate" data-date-format="dd/mm/yyyy"
                                     formControlName="el.dueDate" mdbInput> -->
-                                </td>
+                                <!-- </td> -->
 
 
                                 <td class="text-center" style="width:2%"
@@ -247,8 +269,8 @@
                                 <td class="text-center" style="width:2%"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
-                                        <mdb-icon fas icon="trash-alt" size="lg" class="red-text"
-                                            aria-hidden="true" (click)="deleteTask(el.id)" type="button"></mdb-icon>
+                                        <mdb-icon fas icon="trash-alt" size="lg" class="red-text" aria-hidden="true"
+                                            (click)="deleteTask(el.id)" type="button"></mdb-icon>
                                     </span>
                                     <!-- <button mdbBtn color="danger" size="sm" mdbWavesEffect
                                         (click)="removeRow(el)">Remove</button> -->
@@ -256,11 +278,11 @@
                             </tr>
                         </tbody>
 
-                        <span class="table-add float-right mb-3 mr-2">
+                        <span class="table-add float-right mb-2 mr-2 mt-2">
                             <a class="text-success" (click)="add()">
-                              <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+                                <mdb-icon fas icon="plus" size="2x"></mdb-icon>
                             </a>
-                          </span>
+                        </span>
 
                         <tfoot class="grey lighten-5">
                             <tr>
@@ -271,7 +293,7 @@
                                 </td>
                             </tr>
                         </tfoot>
-                        
+
                     </table>
                     <!--Table-->
                 </div>

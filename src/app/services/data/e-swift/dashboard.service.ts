@@ -45,6 +45,11 @@ updateTask(paramBody){
     .pipe(catchError(this.handleError));
 }
 
+addNewTask(paramBody){
+  return this.httpClient.post(`${JPA_API_URL}/todo/addTaskAssign`, paramBody)
+    .pipe(catchError(this.handleError));
+}
+
 
 
 
