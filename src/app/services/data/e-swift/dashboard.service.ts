@@ -53,7 +53,7 @@ addNewTask(paramBody){
 
 
 
-  private handleError(errorResponse: HttpErrorResponse){
+private handleError(errorResponse: HttpErrorResponse){
     if(errorResponse.error instanceof ErrorEvent){
         console.error('Client Side Error: ', errorResponse.error);
     } else {

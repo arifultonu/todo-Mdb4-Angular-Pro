@@ -7,6 +7,23 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { SelectCodeNameList } from 'src/app/app.component';
 
+export class NewTaskRow {
+  public constructor(
+    public id: number,
+    public adminUserId: string,
+    public assignUserId: string,
+    public taskId: string,
+    public taskDetails: string,
+    public assignDate: string,
+    public dueDate: string,
+    public priorityId: string,
+    public taskStatusId: String
+  ){
+
+  }
+}
+
+
 export interface Todo {
   id: number,
   assignUserId: string,
@@ -37,6 +54,10 @@ export class StatsCardComponent implements OnInit {
   @ViewChild('row', { static: true }) row: ElementRef;
   elements: Todo[] = [];
   todo: Todo[] = [];
+
+  taskrow: NewTaskRow;
+
+
   modalRef: MDBModalRef;
   allUserListSelect: SelectCodeNameList[] = [];
   allPriorityListSelect: SelectCodeNameList[] = [];
@@ -58,7 +79,7 @@ export class StatsCardComponent implements OnInit {
   statsCardForm: FormGroup;
   editField: string;
 
-
+  id: number = 0;
 
   constructor(
     private router: Router,
@@ -82,7 +103,30 @@ export class StatsCardComponent implements OnInit {
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
+
+
+    this.taskrow = new NewTaskRow(this.id,'2','','','','','','','');
   }
+  
+  saveTodo() {
+    // if(this.id == -1) { //=== ==
+      this.dashboardService.addNewTask(this.taskrow).subscribe(
+        data => {
+          this.map = data;
+          console.log(data);
+          const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+          // this.toastrService.clear();
+          // this.toastrService.success(this.map.responseMessage, 'Success!', options);
+          this.ngOnInit();
+        }, (error: any) => {
+          console.log(error);
+          const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+          this.toastrService.clear();
+          this.toastrService.error(error, 'Sorry!', options);
+        }
+      );
+    }
+  // }
 
   getAllStatusDataList() {
     this.dashboardService.getAllStatusDataService().subscribe(data => {
@@ -193,53 +237,38 @@ export class StatsCardComponent implements OnInit {
     this.editField = event.target.textContent;
   }
 
-  addNewTask(){
-    const paramBody = this.todo;
-    this.dashboardService.addNewTask(paramBody).subscribe(
-      data => {
-        this.map = data;
-        console.log(data);
-        const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-        // this.toastrService.clear();
-        // this.toastrService.success(this.map.responseMessage, 'Success!', options);
-        this.ngOnInit();
-      }, (error: any) => {
-        console.log(error);
-        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-        this.toastrService.clear();
-        this.toastrService.error(error, 'Sorry!', options);
-      }
-    );
-  }
+  // addNewTask(){
+  //   const paramBody = this.todo;
+  //   this.dashboardService.addNewTask(paramBody).subscribe(
+  //     data => {
+  //       this.map = data;
+  //       console.log(data);
+  //       const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+  //       // this.toastrService.clear();
+  //       // this.toastrService.success(this.map.responseMessage, 'Success!', options);
+  //       this.ngOnInit();
+  //     }, (error: any) => {
+  //       console.log(error);
+  //       const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+  //       this.toastrService.clear();
+  //       this.toastrService.error(error, 'Sorry!', options);
+  //     }
+  //   );
+  // }
 
  
-  awaitingTaskList: Array<any> = [{"adminUserId": "2",
-  "assignUserId": "2",
-  "taskId": 2,
-  "taskDetails": "Task Assign page Rest API develop Test 2",
-  "assignDate": "08/12/2021",
-  "dueDate": "08/12/2021",
-  "priorityId": 1,
-  "taskStatusId": 1},
-  {"adminUserId": "2",
-  "assignUserId": "2",
-  "taskId": 2,
-  "taskDetails": "Task Assign page Rest API develop Test 2",
-  "assignDate": "08/12/2021",
-  "dueDate": "08/12/2021",
-  "priorityId": 1,
-  "taskStatusId": 1}];
+ 
 
-  add() {   
-    console.log("awaitingTaskList.length: "+this.awaitingTaskList.length);
-    if (this.awaitingTaskList.length > 0) {
-      console.log("Called!");
-      const task = this.awaitingTaskList[0];
-      console.log("task!: "+task);
-      this.elements.push(task);
-      this.awaitingTaskList.splice(0, 1);
-    }
-  }
+  // add() {   
+  //   console.log("awaitingTaskList.length: "+this.awaitingTaskList.length);
+  //   if (this.awaitingTaskList.length > 0) {
+  //     console.log("Called!");
+  //     const task = this.awaitingTaskList[0];
+  //     console.log("task!: "+task);
+  //     this.elements.push(task);
+  //     this.awaitingTaskList.splice(0, 1);
+  //   }
+  // }
 
   // add() {
   //   if (this.awaitingPersonList.length > 0) {
@@ -299,3 +328,5 @@ export class StatsCardComponent implements OnInit {
   }
 
 }
+
+

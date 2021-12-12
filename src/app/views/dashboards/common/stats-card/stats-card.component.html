@@ -147,12 +147,22 @@
             <div class="px-4">
                 <div class="table-wrapper">
                     <div class="row mt-0">
+                        <div class="col-md-2">
+                            
+                        </div>
                         <div class="col-md-6 mx-auto">
                             <div class="md-form">
                                 <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()"
                                     id="search-input" mdbInput [ngModelOptions]="{standalone: true}">
                                 <label for="search-input">Search</label>
                             </div>
+                        </div>
+                        <div class="col-md-1 mx-auto">
+                            <span class="table-add float-right mb-2 mr-2 mt-2">
+                                <a class="text-success" (click)="saveTodo()">
+                                    <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+                                </a>
+                            </span>
                         </div>
 
                     </div>
@@ -276,13 +286,7 @@
                                         (click)="removeRow(el)">Remove</button> -->
                                 </td>
                             </tr>
-                        </tbody>
-
-                        <span class="table-add float-right mb-2 mr-2 mt-2">
-                            <a class="text-success" (click)="add()">
-                                <mdb-icon fas icon="plus" size="2x"></mdb-icon>
-                            </a>
-                        </span>
+                        </tbody>                       
 
                         <tfoot class="grey lighten-5">
                             <tr>
