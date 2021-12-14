@@ -6,7 +6,8 @@
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
                     <a class="admin-up" routerLink="/incomingSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fas icon="cloud-download-alt" class="success-color"></mdb-icon>
+                        <mdb-icon fas icon="door-open" class="blue-grey"></mdb-icon>
+                        <!-- <mdb-icon fas icon="cloud-download-alt" class="blue-grey"></mdb-icon> -->
                         <div class="data">
                             <p>OPEN</p>
                             <h4><strong>{{totalOpenTask}}</strong></h4>
@@ -28,7 +29,8 @@
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
                     <a class="admin-up" routerLink="/outgoingSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fas icon="cloud-upload-alt" class="warning-color"></mdb-icon>
+                        <mdb-icon fab icon="codepen" class="warning-color"></mdb-icon>
+                        <!-- <mdb-icon fas icon="cloud-upload-alt" class="warning-color"></mdb-icon> -->
                         <div class="data">
                             <p>PENDING</p>
                             <h4><strong>{{totalPendingTask}}</strong></h4>
@@ -49,7 +51,8 @@
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
                     <a class="admin-up" routerLink="/queueSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fas icon="stream" class="light-blue lighten-1"></mdb-icon>
+                        <mdb-icon fas icon="truck-monster" class="light-blue lighten-1"></mdb-icon>
+                        <!-- <mdb-icon fas icon="stream" class="light-blue lighten-1"></mdb-icon> -->
                         <div class="data">
                             <p>IN-PROGRESS</p>
                             <h4><strong>{{totalInProgressTask}}</strong></h4>
@@ -72,7 +75,8 @@
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
                     <a class="admin-up" routerLink="/incomingSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fas icon="cloud-download-alt" class="success-color"></mdb-icon>
+                        <mdb-icon fas icon="check-circle" class="success-color"></mdb-icon>
+                        <!-- <mdb-icon fas icon="cloud-download-alt" class="success-color"></mdb-icon> -->
                         <div class="data">
                             <p>COMPLETED</p>
                             <h4><strong>{{totalCompletedTask}}</strong></h4>
@@ -92,7 +96,8 @@
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
                     <a class="admin-up" routerLink="/outgoingSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fas icon="cloud-upload-alt" class="warning-color"></mdb-icon>
+                        <mdb-icon fab icon="rev"  class="purple"></mdb-icon>
+                        <!-- <mdb-icon fas icon="cloud-upload-alt" class="purple"></mdb-icon> -->
                         <div class="data">
                             <p>IN-REVIEW</p>
                             <h4><strong>{{totalInReviewTask}}</strong></h4>
@@ -113,7 +118,8 @@
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
                     <a class="admin-up" routerLink="/queueSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fas icon="stream" class="light-blue lighten-1"></mdb-icon>
+                        <mdb-icon fas icon="ban" class="danger-color"></mdb-icon>
+                        <!-- <mdb-icon fas icon="stream" class="danger-color"></mdb-icon> -->
                         <div class="data">
                             <p>REJECTED</p>
                             <h4><strong>{{totalRejectedTask}}</strong></h4>
@@ -159,7 +165,7 @@
                         </div>
                         <div class="col-md-1 mx-auto">
                             <span class="table-add float-right mb-2 mr-2 mt-2">
-                                <a class="text-success" (click)="saveTodo()">
+                                <a class="text-success" (click)="addNewTask()">
                                     <mdb-icon fas icon="plus" size="2x"></mdb-icon>
                                 </a>
                             </span>
@@ -240,40 +246,19 @@
                                     {{el.assignDate}}
                                 </td>
 
-                                <!-- <td class="text-center" -->
-                                <!-- *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"> -->
-                                <!-- <div class="md-form">
-                                        <input type="date" id="input" formControlName="el.assignDate" class="form-control" mdbInput>
-                                    </div> -->
-                                <!-- {{el.assignDate}} -->
-                                <!-- </td> -->
-
                                 <td class="text-left"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
                                     (keyup)="changeValue(i, 'dueDate',  $event)"
                                     (blur)="updateList(i, 'dueDate', $event)" contenteditable="true">
                                     {{el.dueDate}}
                                 </td>
-
-                                <!-- <td class="text-center" -->
-                                <!-- *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"> -->
-                                <!-- <div class="md-form">
-                                        <input type="date" formControlName="el.dueDate" id="input" class="form-control" mdbInput>
-                                    </div> -->
-                                <!-- {{el.dueDate}} -->
-                                <!-- <input type="date" id="dueDate" data-date-format="dd/mm/yyyy"
-                                    formControlName="el.dueDate" mdbInput> -->
-                                <!-- </td> -->
-
-
+                                
                                 <td class="text-center" style="width:2%"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
                                         <span type="button" color="info" size="sm" mdbWavesEffect>
                                             <mdb-icon fas icon="comment-dots" size="lg"></mdb-icon>
                                         </span>
-                                        <!-- <mdb-icon fas icon="block-alt" size="lg" class="red-text pr-3"
-                                            aria-hidden="true" (click)="deleteTask(el.id)" type="button"></mdb-icon> -->
                                     </span>
                                 </td>
                                 <td class="text-center" style="width:2%"
@@ -281,9 +266,7 @@
                                     <span>
                                         <mdb-icon fas icon="trash-alt" size="lg" class="red-text" aria-hidden="true"
                                             (click)="deleteTask(el.id)" type="button"></mdb-icon>
-                                    </span>
-                                    <!-- <button mdbBtn color="danger" size="sm" mdbWavesEffect
-                                        (click)="removeRow(el)">Remove</button> -->
+                                    </span>                                    
                                 </td>
                             </tr>
                         </tbody>                       
@@ -296,8 +279,9 @@
                                     </mdb-table-pagination>
                                 </td>
                             </tr>
-                        </tfoot>
+                            <!-- <button mdbBtn size="sm" type="button" color="default" mdbWavesEffect>Save<mdb-icon fas icon="file" class="ml-1"></mdb-icon></button> -->
 
+                        </tfoot>
                     </table>
                     <!--Table-->
                 </div>

@@ -18,11 +18,8 @@ export class NewTaskRow {
     public dueDate: string,
     public priorityId: string,
     public taskStatusId: String
-  ){
-
-  }
+  ){ }
 }
-
 
 export interface Todo {
   id: number,
@@ -33,18 +30,13 @@ export interface Todo {
   dueDate: string,
   priorityId: string,
   taskStatusId: String,
-
 }
-
 
 @Component({
   selector: 'app-stats-card',
   templateUrl: './stats-card.component.html',
   styleUrls: ['./stats-card.component.scss']
 })
-
-
-
 
 export class StatsCardComponent implements OnInit {
   @Input() shadows = true;
@@ -56,7 +48,6 @@ export class StatsCardComponent implements OnInit {
   todo: Todo[] = [];
 
   taskrow: NewTaskRow;
-
 
   modalRef: MDBModalRef;
   allUserListSelect: SelectCodeNameList[] = [];
@@ -78,7 +69,6 @@ export class StatsCardComponent implements OnInit {
 
   statsCardForm: FormGroup;
   editField: string;
-
   id: number = 0;
 
   constructor(
@@ -93,23 +83,19 @@ export class StatsCardComponent implements OnInit {
     this.mdbTablePagination.searchText = this.searchText;
   }
 
-  //Data Table//
 
   ngOnInit() {
     this.statsCardForm = new FormGroup({
       'searchText': new FormControl(),
-    });
+    });    
     this.getAllTaskByUserIdService();
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
-
-
     this.taskrow = new NewTaskRow(this.id,'2','','','','','','','');
   }
   
-  saveTodo() {
-    // if(this.id == -1) { //=== ==
+  addNewTask() {
       this.dashboardService.addNewTask(this.taskrow).subscribe(
         data => {
           this.map = data;
@@ -126,7 +112,6 @@ export class StatsCardComponent implements OnInit {
         }
       );
     }
-  // }
 
   getAllStatusDataList() {
     this.dashboardService.getAllStatusDataService().subscribe(data => {
@@ -192,14 +177,12 @@ export class StatsCardComponent implements OnInit {
         // this.toastrService.warning('Data didn\'t found !!', 'Sorry!', options);
         this.modalLoading = false;
       }
-    },
-      (error: any) => {
+    }, (error: any) => {
         console.log(error);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
         this.toastrService.clear();
         this.toastrService.error(error, 'Sorry!', options);
       });
-
   }
 
 
@@ -211,7 +194,7 @@ export class StatsCardComponent implements OnInit {
         const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
         // this.toastrService.clear();
         // this.toastrService.success(this.map.responseMessage, 'Success!', options);
-        this.ngOnInit();
+       // this.ngOnInit();
       }, (error: any) => {
         console.log(error);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
@@ -223,63 +206,18 @@ export class StatsCardComponent implements OnInit {
   }
 
 
-
   updateList(id: number, property: string, event: any) {
     const editField = event.target.textContent;
     this.elements[id][property] = editField;
     console.log(this.elements);
     this.todo = this.elements;
     this.updateTask(this.todo);
-   // this.checkValidition(cbsField, editField, documentNo, messageType);
   }
 
   changeValue(id: number, property: any, event: any) {
     this.editField = event.target.textContent;
   }
-
-  // addNewTask(){
-  //   const paramBody = this.todo;
-  //   this.dashboardService.addNewTask(paramBody).subscribe(
-  //     data => {
-  //       this.map = data;
-  //       console.log(data);
-  //       const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-  //       // this.toastrService.clear();
-  //       // this.toastrService.success(this.map.responseMessage, 'Success!', options);
-  //       this.ngOnInit();
-  //     }, (error: any) => {
-  //       console.log(error);
-  //       const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-  //       this.toastrService.clear();
-  //       this.toastrService.error(error, 'Sorry!', options);
-  //     }
-  //   );
-  // }
-
  
- 
-
-  // add() {   
-  //   console.log("awaitingTaskList.length: "+this.awaitingTaskList.length);
-  //   if (this.awaitingTaskList.length > 0) {
-  //     console.log("Called!");
-  //     const task = this.awaitingTaskList[0];
-  //     console.log("task!: "+task);
-  //     this.elements.push(task);
-  //     this.awaitingTaskList.splice(0, 1);
-  //   }
-  // }
-
-  // add() {
-  //   if (this.awaitingPersonList.length > 0) {
-  //     const person = this.awaitingPersonList[0];
-  //     this.personList.push(person);
-  //     this.awaitingPersonList.splice(0, 1);
-  //   }
-  // }
-
-
-  // awaitingTaskList
 
   deleteTask(id: any) {
     console.log(`delete todo ${id}`);
@@ -308,24 +246,18 @@ export class StatsCardComponent implements OnInit {
       this.mdbTable.setDataSource(this.previous);
       this.elements = this.mdbTable.getDataSource();
     }
-
     if (this.searchText) {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
     }
-
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
-
     this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
       this.mdbTablePagination.calculateFirstItemIndex();
       this.mdbTablePagination.calculateLastItemIndex();
     });
   }
 
-  viewDetails(taskId: any) {
-
-  }
 
 }
 
