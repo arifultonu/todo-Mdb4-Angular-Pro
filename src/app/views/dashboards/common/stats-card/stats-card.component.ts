@@ -1,11 +1,12 @@
 import { Component, ElementRef, Input, OnInit, ViewChild, HostListener, ChangeDetectorRef } from '@angular/core';
-import { MDBModalRef, MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
+import { MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { Parameters } from 'src/app/parameters';
 import { DashboardService } from 'src/app/services/data/e-swift/dashboard.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { SelectCodeNameList } from 'src/app/app.component';
+import { TaskEditModalComponent } from '../task-edit-modal/task-edit-modal.component';
 
 export class NewTaskRow {
   public constructor(
@@ -18,7 +19,9 @@ export class NewTaskRow {
     public dueDate: string,
     public priorityId: string,
     public taskStatusId: String
-  ){ }
+  ){ 
+
+  }
 }
 
 export interface Todo {
@@ -41,7 +44,7 @@ export interface Todo {
 export class StatsCardComponent implements OnInit {
   @Input() shadows = true;
   //Data Table
-  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;  
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild('row', { static: true }) row: ElementRef;
   elements: Todo[] = [];
@@ -53,30 +56,35 @@ export class StatsCardComponent implements OnInit {
   allUserListSelect: SelectCodeNameList[] = [];
   allPriorityListSelect: SelectCodeNameList[] = [];
   allStatusListSelect: SelectCodeNameList[] = [];
+
   parameters: any = new Parameters();
   map: any;
   searchText: string = '';
   previous: string;
   modalLoading: boolean = true;
-  totalOpenTask: any;
-  totalPendingTask: any;
-  totalInProgressTask: any;
-  totalCompletedTask: any;
-  totalInReviewTask: any;
-  totalRejectedTask: any;
+
+  // totalOpenTask: any;
+  // totalPendingTask: any;
+  // totalInProgressTask: any;
+  // totalCompletedTask: any;
+  // totalInReviewTask: any;
+  // totalRejectedTask: any;
+
   adminUserId: string;
-  maxVisibleItems: number = 10;
+  maxVisibleItems: number = 5;
 
   statsCardForm: FormGroup;
   editField: string;
   id: number = 0;
+  visible = false;
 
   constructor(
     private router: Router,
     private cdRef: ChangeDetectorRef,
     private dashboardService: DashboardService,
     private toastrService: ToastService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private modalService: MDBModalService,
   ) { }
 
   @HostListener('input') oninput() {
@@ -92,17 +100,58 @@ export class StatsCardComponent implements OnInit {
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
-    this.taskrow = new NewTaskRow(this.id,'2','','','','','','','');
+    this.taskrow = new NewTaskRow(this.id,'2','','','','YYYY/MM/DD','YYYY/MM/DD','','');
   }
+
+  editRow(el: any) {
+    const elementIndex = this.elements.findIndex((elem: any) => el === elem);
+    const modalOptions = {
+      data: {
+        editableRow: el
+      }
+    };
+    console.log('elementIndex: ' + elementIndex);
+   this.modalRef = this.modalService.show(TaskEditModalComponent, modalOptions);
+    this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {
+      this.elements[elementIndex] = newElement;
+    });
+    this.mdbTable.setDataSource(this.elements);
+  }
+
   
+getAllTaskByUserIdService() {
+    const adminUserId = "2";
+    // this.userId = sessionStorage.getItem("userId");
+    console.log("this.adminUserId: " + adminUserId);
+    this.dashboardService.getAllTaskByUserIdService(adminUserId).subscribe(data => {
+      this.map = data;
+      this.elements = this.map;
+      console.log(this.elements);
+      if (this.elements.length > 0) {
+        
+        this.mdbTable.setDataSource(this.elements);
+        this.elements = this.mdbTable.getDataSource();
+        this.previous = this.mdbTable.getDataSource();
+
+        this.modalLoading = false;
+      } else {        
+        this.modalLoading = false;
+      }
+    }, (error: any) => {
+        console.log(error);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.error(error, 'Sorry!', options);
+      });
+  }
+
+
   addNewTask() {
       this.dashboardService.addNewTask(this.taskrow).subscribe(
         data => {
           this.map = data;
           console.log(data);
-          const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-          // this.toastrService.clear();
-          // this.toastrService.success(this.map.responseMessage, 'Success!', options);
+          const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };         
           this.ngOnInit();
         }, (error: any) => {
           console.log(error);
@@ -158,32 +207,7 @@ export class StatsCardComponent implements OnInit {
     this.cdRef.detectChanges();
     //Data Table//
   }
-
-  getAllTaskByUserIdService() {
-    const adminUserId = "2";
-    // this.userId = sessionStorage.getItem("userId");
-    console.log("this.adminUserId: " + adminUserId);
-    this.dashboardService.getAllTaskByUserIdService(adminUserId).subscribe(data => {
-      this.map = data;
-      this.elements = this.map;
-      console.log(this.elements);
-      if (this.elements.length > 0) {
-        this.mdbTable.setDataSource(this.elements);
-        this.elements = this.mdbTable.getDataSource();
-        this.previous = this.mdbTable.getDataSource();
-        this.modalLoading = false;
-      } else {
-        // const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-        // this.toastrService.warning('Data didn\'t found !!', 'Sorry!', options);
-        this.modalLoading = false;
-      }
-    }, (error: any) => {
-        console.log(error);
-        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-        this.toastrService.clear();
-        this.toastrService.error(error, 'Sorry!', options);
-      });
-  }
+ 
 
 
   updateTask(paramBody){

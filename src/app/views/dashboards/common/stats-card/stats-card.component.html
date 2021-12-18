@@ -5,9 +5,8 @@
         <div class="row">
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/incomingSwiftMessage" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="door-open" class="blue-grey"></mdb-icon>
-                        <!-- <mdb-icon fas icon="cloud-download-alt" class="blue-grey"></mdb-icon> -->
                         <div class="data">
                             <p>OPEN</p>
                             <h4><strong>{{totalOpenTask}}</strong></h4>
@@ -15,12 +14,16 @@
                     </a>
 
                     <mdb-card-body [cascade]="true">
-                        <p class="card-text">Total Open Task</p>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
+                        <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+                            <tr *ngFor="let el2 of elements">
+                                <td *ngIf="el2.taskStatusId == '1'" class="text-left" style="font-size: 11pt;">
+                                    <a type="button" (click)="editRow(el2)"> 
+                                        <mdb-icon fas icon="square" size="sm" style="color: rgb(108, 117, 126);"></mdb-icon>
+                                        <span style="color: rgb(3, 94, 185);" class="me-2"> {{el2.taskDetails}}</span> </a>
+                                    <hr/>
+                                </td>
+                            </tr>
+                        </table>
                     </mdb-card-body>
                 </mdb-card>
 
@@ -28,9 +31,8 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/outgoingSwiftMessage" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fab icon="codepen" class="warning-color"></mdb-icon>
-                        <!-- <mdb-icon fas icon="cloud-upload-alt" class="warning-color"></mdb-icon> -->
                         <div class="data">
                             <p>PENDING</p>
                             <h4><strong>{{totalPendingTask}}</strong></h4>
@@ -38,11 +40,16 @@
                     </a>
 
                     <mdb-card-body cascade="true">
-                        <p class="card-text">Total Pending Task</p>
-                        <div class="progress">
-                            <div class="progress-bar bg warning-color darken-2" role="progressbar" style="width: 100%"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+                            <tr *ngFor="let el2 of elements">
+                                <td *ngIf="el2.taskStatusId == '2'" class="text-left" style="font-size: 11pt;">
+                                    <a type="button" (click)="editRow(el2)">
+                                        <mdb-icon fas icon="square" size="sm" style="color: rgb(250, 123, 3);"></mdb-icon>
+                                        <span style="color: rgb(3, 94, 185);" class="me-2"> {{el2.taskDetails}} </span></a>
+                                    <hr />
+                                </td>
+                            </tr>
+                        </table>
                     </mdb-card-body>
                 </mdb-card>
 
@@ -50,9 +57,8 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/queueSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fas icon="truck-monster" class="light-blue lighten-1"></mdb-icon>
-                        <!-- <mdb-icon fas icon="stream" class="light-blue lighten-1"></mdb-icon> -->
+                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                        <mdb-icon fas icon="cogs" class="light-blue lighten-1"></mdb-icon>
                         <div class="data">
                             <p>IN-PROGRESS</p>
                             <h4><strong>{{totalInProgressTask}}</strong></h4>
@@ -60,11 +66,16 @@
                     </a>
 
                     <mdb-card-body cascade="true">
-                        <p class="card-text">Total In-Progress Task</p>
-                        <div class="progress">
-                            <div class="progress-bar light-blue lighten-1" role="progressbar" style="width: 100%"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+                            <tr *ngFor="let el2 of elements">
+                                <td *ngIf="el2.taskStatusId == '3'" class="text-left" style="font-size: 11pt;">
+                                    <a type="button" (click)="editRow(el2)"> 
+                                        <mdb-icon fas icon="square" size="sm" style="color: rgb(11, 178, 255);"></mdb-icon>
+                                        <span style="color: rgb(3, 94, 185);" class="me-2"> {{el2.taskDetails}} </span></a>
+                                    <hr />
+                                </td>
+                            </tr>
+                        </table>
                     </mdb-card-body>
 
                 </mdb-card>
@@ -74,30 +85,32 @@
         <div class="row">
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/incomingSwiftMessage" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="check-circle" class="success-color"></mdb-icon>
-                        <!-- <mdb-icon fas icon="cloud-download-alt" class="success-color"></mdb-icon> -->
                         <div class="data">
                             <p>COMPLETED</p>
                             <h4><strong>{{totalCompletedTask}}</strong></h4>
                         </div>
                     </a>
                     <mdb-card-body [cascade]="true">
-                        <p class="card-text">Total Completed Task</p>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
+                        <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+                            <tr *ngFor="let el2 of elements">
+                                <td *ngIf="el2.taskStatusId == '4'" class="text-left" style="font-size: 11pt;">
+                                    <a type="button" (click)="editRow(el2)"> 
+                                        <mdb-icon fas icon="square" size="sm" style="color: rgb(21, 255, 52);"></mdb-icon>
+                                        <span style="color: rgb(3, 94, 185);" class="me-2"> {{el2.taskDetails}} </span> </a>
+                                    <hr />
+                                </td>
+                            </tr>
+                        </table>
                     </mdb-card-body>
                 </mdb-card>
             </div>
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/outgoingSwiftMessage" routerLinkActive="active" type="submit">
-                        <mdb-icon fab icon="rev"  class="purple"></mdb-icon>
-                        <!-- <mdb-icon fas icon="cloud-upload-alt" class="purple"></mdb-icon> -->
+                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                        <mdb-icon fab icon="rev" class="purple"></mdb-icon>
                         <div class="data">
                             <p>IN-REVIEW</p>
                             <h4><strong>{{totalInReviewTask}}</strong></h4>
@@ -105,11 +118,16 @@
                     </a>
 
                     <mdb-card-body cascade="true">
-                        <p class="card-text">Total In-Review Task</p>
-                        <div class="progress">
-                            <div class="progress-bar bg warning-color darken-2" role="progressbar" style="width: 100%"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+                            <tr *ngFor="let el2 of elements">
+                                <td *ngIf="el2.taskStatusId == '5'" class="text-left" style="font-size: 11pt;">
+                                    <a type="button" (click)="editRow(el2)"> 
+                                        <mdb-icon fas icon="square" size="sm" style="color: rgb(122, 21, 255);"></mdb-icon>
+                                        <span style="color: rgb(3, 94, 185);" class="me-2"> {{el2.taskDetails}}</span> </a>
+                                    <hr />
+                                </td>
+                            </tr>
+                        </table>
                     </mdb-card-body>
                 </mdb-card>
 
@@ -117,9 +135,8 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/queueSwiftMessage" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="ban" class="danger-color"></mdb-icon>
-                        <!-- <mdb-icon fas icon="stream" class="danger-color"></mdb-icon> -->
                         <div class="data">
                             <p>REJECTED</p>
                             <h4><strong>{{totalRejectedTask}}</strong></h4>
@@ -127,11 +144,16 @@
                     </a>
 
                     <mdb-card-body cascade="true">
-                        <p class="card-text">Total Rejected Task</p>
-                        <div class="progress">
-                            <div class="progress-bar light-blue lighten-1" role="progressbar" style="width: 100%"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+                            <tr *ngFor="let el2 of elements">
+                                <td *ngIf="el2.taskStatusId == '6'" class="text-left" style="font-size: 11pt;">
+                                    <a type="button" (click)="editRow(el2)"> 
+                                        <mdb-icon fas icon="square" size="sm" style="color: rgb(255, 36, 72);"></mdb-icon>
+                                        <span style="color: rgb(3, 94, 185);"  class="me-2"> {{el2.taskDetails}} </span></a>
+                                    <hr />
+                                </td>
+                            </tr>
+                        </table>
                     </mdb-card-body>
 
                 </mdb-card>
@@ -154,7 +176,7 @@
                 <div class="table-wrapper">
                     <div class="row mt-0">
                         <div class="col-md-2">
-                            
+
                         </div>
                         <div class="col-md-6 mx-auto">
                             <div class="md-form">
@@ -174,8 +196,8 @@
                     </div>
                     <!--Table-->
                     <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true"
-                        class="table-bordered table-responsive-md z-depth-1 text-center" small="true" mdbTableScroll
-                        scrollX="true" maxWidth="1200">
+                        class="table-bordered table-responsive-md z-depth-1 text-center mb-3" small="true"
+                        mdbTableScroll scrollX="true" maxWidth="1200">
 
                         <thead class="sticky-top black white-text">
                             <tr>
@@ -252,7 +274,7 @@
                                     (blur)="updateList(i, 'dueDate', $event)" contenteditable="true">
                                     {{el.dueDate}}
                                 </td>
-                                
+
                                 <td class="text-center" style="width:2%"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
@@ -266,10 +288,10 @@
                                     <span>
                                         <mdb-icon fas icon="trash-alt" size="lg" class="red-text" aria-hidden="true"
                                             (click)="deleteTask(el.id)" type="button"></mdb-icon>
-                                    </span>                                    
+                                    </span>
                                 </td>
                             </tr>
-                        </tbody>                       
+                        </tbody>
 
                         <tfoot class="grey lighten-5">
                             <tr>

@@ -66,12 +66,14 @@ import { IncomingSwiftMessageComponent } from './views/pages/incoming-swift-mess
 import { FinallySendMessageComponent } from './views/pages/finally-send-message/finally-send-message.component';
 import { OutgoingMessageAuthorizationDetailsComponent } from './views/pages/outgoing-message-authorization-details/outgoing-message-authorization-details.component';
 import { QueueSwiftMessageComponent } from './views/pages/queue-swift-message/queue-swift-message.component';
+import { SetupComponent } from './views/setup/setup.component';
 
 
 const routes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: ' ', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
+  { path: 'setup', component: SetupComponent },
   { path: 'cbsdatamessage', component: CbsDataMessageComponent },
   { path: 'outgoingSwiftMessage', component: OutgoingSwiftMessageComponent },
   { path: 'outgoingSwiftMessageEdit/:documentNo/:messageType/:messageName', component: OutgoingSwiftMessageEditComponent },

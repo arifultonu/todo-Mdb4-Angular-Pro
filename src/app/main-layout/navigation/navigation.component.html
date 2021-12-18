@@ -1,161 +1,177 @@
 <!--Double navigation-->
 <header class="fixed-top">
 
-   
 
- <!-- Sidebar navigation -->
- <mdb-sidenav #sidenav class=" fixed" [fixed]="true" width="350">
 
-    <logo>
-        <!-- Logo -->
-        <li>
-            <div class="logo-wrapper waves-light">
-                <h3>
-                    <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" alt="e-Swift">
-                </h3>
-            </div>
-        </li>
-        <!--/. Logo -->
-    </logo>
+    <!-- Sidebar navigation -->
+    <mdb-sidenav #sidenav class=" fixed" [fixed]="true" width="350">
 
-    <links>           
-        
-        <!-- Side navigation links -->
-        <li>
-            <ul class="collapsible collapsible-accordion">
-                <mdb-squeezebox [multiple]="false" aria-multiselectable="false">
+        <logo>
+            <!-- Logo -->
+            <li>
+                <div class="logo-wrapper waves-light">
+                    <h3>
+                        <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center"
+                            alt="e-Swift">
+                    </h3>
+                </div>
+            </li>
+            <!--/. Logo -->
+        </logo>
 
-                    <mdb-item>
-                        <mdb-item-head mdbWavesEffect>
-                            <mdb-icon fas icon="tachometer-alt" class="mr-1"></mdb-icon> Dashboards
-                        </mdb-item-head>
-                        <mdb-item-body>
-                            <ul>
-                                <li>
-                                    <a routerLinkActive="active" (click)="sidenav.toggle();" routerLink="dashboards/v1" class="waves-effect" mdbWavesEffect>Dashboard-Maker's</a>
-                                </li>
-                               
-                            </ul>
-                        </mdb-item-body>
-                    </mdb-item>
-                    <mdb-item>
-                        <mdb-item-head mdbWavesEffect>
-                            <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon> Activity
-                        </mdb-item-head>
-                        <mdb-item-body>
-                            <ul>
-                                <!-- <li>
+        <links>
+
+            <!-- Side navigation links -->
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <mdb-squeezebox [multiple]="false" aria-multiselectable="false">
+
+                        <mdb-item>
+                            <mdb-item-head mdbWavesEffect>
+                                <mdb-icon fas icon="tachometer-alt" class="mr-1"></mdb-icon> Dashboards
+                            </mdb-item-head>
+                            <mdb-item-body>
+                                <ul>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                            routerLink="dashboards/v1" class="waves-effect"
+                                            mdbWavesEffect>Dashboard-Maker's</a>
+                                    </li>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                            routerLink="setup" class="waves-effect"
+                                            mdbWavesEffect>Setup</a>
+                                    </li>
+                                </ul>
+                            </mdb-item-body>
+                        </mdb-item>
+                        <mdb-item>
+                            <mdb-item-head mdbWavesEffect>
+                                <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon> Activity
+                            </mdb-item-head>
+                            <mdb-item-body>
+                                <ul>
+                                    <!-- <li>
                                     <a routerLinkActive="active" (click)="sidenav.toggle();" routerLink="pages/cbsdatamessage" class="waves-effect" mdbWavesEffect>CBS Data Show For Message Creation</a>
                                 </li>
                                 <hr class="dropdown-divider"> -->
-                                <li>
-                                    <a routerLinkActive="active" (click)="sidenav.toggle();" 
-                                    routerLink="incomingSwiftMessage" class="waves-effect" mdbWavesEffect>Incoming Message</a>
-                                </li>
-                                <li>
-                                    <a routerLinkActive="active" (click)="sidenav.toggle();" 
-                                    routerLink="outgoingSwiftMessage" class="waves-effect" mdbWavesEffect>Outgoing Message</a>
-                                </li>
-                                <li>
-                                    <a routerLinkActive="active" (click)="sidenav.toggle();" 
-                                    routerLink="queueSwiftMessage" class="waves-effect" mdbWavesEffect>Queue Message</a>
-                                </li>
-                                <li>
-                                    <a routerLinkActive="active" (click)="sidenav.toggle();" 
-                                    routerLink="outgoingMessageAuthorization" class="waves-effect" mdbWavesEffect>Authorization</a>
-                                </li>
-                                <li>
-                                    <a routerLinkActive="active" (click)="sidenav.toggle();" 
-                                    routerLink="finallySendMessage" class="waves-effect" mdbWavesEffect>Finally Send Message</a>
-                                </li>                               
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                            routerLink="incomingSwiftMessage" class="waves-effect"
+                                            mdbWavesEffect>Incoming Message</a>
+                                    </li>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                            routerLink="outgoingSwiftMessage" class="waves-effect"
+                                            mdbWavesEffect>Outgoing Message</a>
+                                    </li>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                            routerLink="queueSwiftMessage" class="waves-effect" mdbWavesEffect>Queue
+                                            Message</a>
+                                    </li>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                            routerLink="outgoingMessageAuthorization" class="waves-effect"
+                                            mdbWavesEffect>Authorization</a>
+                                    </li>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                            routerLink="finallySendMessage" class="waves-effect" mdbWavesEffect>Finally
+                                            Send Message</a>
+                                    </li>
 
-                                <!-- <li>
+                                    <!-- <li>
                                     <a routerLink="pages/login" class="waves-effect" mdbWavesEffect>Login</a>
                                 </li> -->
-                                
-                            </ul>
-                        </mdb-item-body>
-                    </mdb-item>
-                    <mdb-item>
-                        <mdb-item-head mdbWavesEffect>
-                            <mdb-icon fas icon="file-pdf" class="mr-1"></mdb-icon> Reports
-                        </mdb-item-head>
-                        <mdb-item-body>
-                            <ul>
-                                <li>
-                                    <a routerLinkActive="active" (click)="sidenav.toggle();" routerLink="#" class="waves-effect" mdbWavesEffect>MIS Report</a>
-                                </li>                                    
-                            </ul>
-                        </mdb-item-body>
-                    </mdb-item>
-                    
-      
-                    <mdb-item class="no-collase">
-                        <mdb-item-head routerLinkActive="active" mdbWavesEffect routerLink="#" (click)="sidenav.toggle();">
-                            <i class="fa fa-th"></i> Settings
-                        </mdb-item-head>
-                        <mdb-item-body></mdb-item-body>
-                    </mdb-item>
 
-                </mdb-squeezebox>
+                                </ul>
+                            </mdb-item-body>
+                        </mdb-item>
+                        <mdb-item>
+                            <mdb-item-head mdbWavesEffect>
+                                <mdb-icon fas icon="file-pdf" class="mr-1"></mdb-icon> Reports
+                            </mdb-item-head>
+                            <mdb-item-body>
+                                <ul>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();" routerLink="#"
+                                            class="waves-effect" mdbWavesEffect>MIS Report</a>
+                                    </li>
+                                </ul>
+                            </mdb-item-body>
+                        </mdb-item>
+
+
+                        <mdb-item class="no-collase">
+                            <mdb-item-head routerLinkActive="active" mdbWavesEffect routerLink="#"
+                                (click)="sidenav.toggle();">
+                                <i class="fa fa-th"></i> Settings
+                            </mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+
+                    </mdb-squeezebox>
+                </ul>
+            </li>
+            <!--/. Side navigation links -->
+        </links>
+
+    </mdb-sidenav>
+    <!--/. Sidebar navigation -->
+
+    <!-- Navbar -->
+    <mdb-navbar SideClass="navbar navbar-expand-md scrolling-navbar double-nav" [containerInside]="false">
+        <navlinks class="navbar-container">
+            <!-- SideNav slide-out button -->
+            <div class="float-xs-left">
+                <a (click)="sidenav.show()" class="button-collapse-non-fixed">
+                    <mdb-icon fas icon="bars"></mdb-icon>
+                </a>
+            </div>
+            <!--/. SideNav slide-out button -->
+        </navlinks>
+        <logo>
+            <!-- Breadcrumb-->
+            <div class="breadcrumbs breadcrumb-dn mr-auto">
+                <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" height="30"
+                    alt="e-Swift">
+            </div>
+            <!--/. Breadcrumb-->
+        </logo>
+        <navlinks>
+
+            <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav">
+                <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect>
+                        <mdb-icon far icon="envelope" class="mr-1"></mdb-icon>
+                        <span class="clearfix d-none d-sm-inline-block">Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect>
+                        <mdb-icon far icon="comments" class="mr-1"></mdb-icon>
+                        <span class="clearfix d-none d-sm-inline-block">Support</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown btn-group" dropdown>
+                    <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                        <mdb-icon fas icon="user" class="mr-1"></mdb-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+                        <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Home</a>
+                        <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Profile</a>
+                        <a class="dropdown-item" routerLink="/dashboards/v1" href="#"
+                            routerLinkActive="active">Dashboard</a>
+                        <a class="dropdown-item" routerLink="/login" href="#" routerLinkActive="active">Sign Out</a>
+                    </div>
+                </li>
             </ul>
-        </li>
-        <!--/. Side navigation links -->
-    </links>
 
-</mdb-sidenav>
-<!--/. Sidebar navigation -->
+        </navlinks>
 
- <!-- Navbar -->
- <mdb-navbar SideClass="navbar navbar-expand-md scrolling-navbar double-nav" [containerInside]="false">
-    <navlinks class="navbar-container">
-        <!-- SideNav slide-out button -->
-        <div class="float-xs-left">
-            <a (click)="sidenav.show()" class="button-collapse-non-fixed">
-                <mdb-icon fas icon="bars"></mdb-icon>
-            </a>
-        </div>
-        <!--/. SideNav slide-out button -->
-    </navlinks>
-    <logo>
-        <!-- Breadcrumb-->
-        <div class="breadcrumbs breadcrumb-dn mr-auto">
-         <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" height="30" alt="e-Swift">
-        </div>
-        <!--/. Breadcrumb-->
-    </logo>
-    <navlinks>
-
-        <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav">
-            <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>
-                    <mdb-icon far icon="envelope" class="mr-1"></mdb-icon>
-                    <span class="clearfix d-none d-sm-inline-block">Contact</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>
-                    <mdb-icon far icon="comments" class="mr-1"></mdb-icon>
-                    <span class="clearfix d-none d-sm-inline-block">Support</span>
-                </a>
-            </li>          
-            <li class="nav-item dropdown btn-group" dropdown>
-                <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-                    <mdb-icon fas icon="user" class="mr-1"></mdb-icon>
-                </a>
-                <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                    <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Home</a>
-                    <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Profile</a>
-                    <a class="dropdown-item" routerLink="/dashboards/v1" href="#" routerLinkActive="active">Dashboard</a>
-                    <a class="dropdown-item" routerLink="/login" href="#" routerLinkActive="active">Sign Out</a>
-                </div>
-            </li>
-        </ul>
-
-    </navlinks>
-
-</mdb-navbar>
-<!--/. Navbar -->
+    </mdb-navbar>
+    <!--/. Navbar -->
 
 </header>
 <!--/.Double navigation-->

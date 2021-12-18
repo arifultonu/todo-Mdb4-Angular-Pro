@@ -78,6 +78,8 @@ import { FinallySendMessageComponent } from './pages/finally-send-message/finall
 import { SubmitSuccessMessageComponent } from './pages/submit-success-message/submit-success-message.component';
 import { OutgoingMessageAuthorizationDetailsComponent } from './pages/outgoing-message-authorization-details/outgoing-message-authorization-details.component';
 import { QueueSwiftMessageComponent } from './pages/queue-swift-message/queue-swift-message.component';
+import { TaskEditModalComponent } from './dashboards/common/task-edit-modal/task-edit-modal.component';
+import { SetupComponent } from './setup/setup.component';
 
 @NgModule({
   imports: [
@@ -163,6 +165,8 @@ import { QueueSwiftMessageComponent } from './pages/queue-swift-message/queue-sw
     SubmitSuccessMessageComponent,
     OutgoingMessageAuthorizationDetailsComponent,
     QueueSwiftMessageComponent,
+    TaskEditModalComponent,
+    SetupComponent,
   ],
   exports: [
     FooterComponent,
