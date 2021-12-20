@@ -8,7 +8,7 @@
     <div class="row mt-3">
       <!--First column-->
       <div class="col-md-12">
-        <div class="md-form">        
+        <div class="md-form">
           <!--/Card image-->
 
           <div class="px-4">
@@ -85,40 +85,155 @@
   <mdb-tab heading="<a class='list-group-item'>Task Status</a>">
     <div class="row mt-3">
       <!--First column-->
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="md-form">
-          <input [disabled]='false' type="text" id="form11" class="form-control" mdbInput>
-          <label class="active disabled" for="form11">Task Status:</label>
+          <!--/Card image-->
+
+          <div class="px-4">
+            <div class="table-wrapper">
+              <div class="row mt-0">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-6 mx-auto">
+                  <div class="md-form">
+                    <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()"
+                      id="search-input" mdbInput [ngModelOptions]="{standalone: true}">
+                    <label for="search-input">Search</label>
+                  </div>
+                </div>
+              </div>
+              <!--Table-->
+              <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true"
+                class="table-bordered table-responsive-md z-depth-1 text-center mb-3" small="true" mdbTableScroll
+                scrollX="true" maxWidth="1200">
+
+                <thead class="sticky-top black white-text">
+                  <tr>
+                    <th [mdbTableSort]="elements" sortBy="i">Srl
+                    </th>
+                    <th [mdbTableSort]="elements" sortBy="taskDetails">User Name
+                    </th>
+                    <th [mdbTableSort]="elements" sortBy="assigneeId">Email
+                    </th>
+                    <th [mdbTableSort]="elements" sortBy="priorityId">Role
+                    </th>
+                    <th [mdbTableSort]="elements" sortBy="taskStatusId">Active Status
+                    </th>
+                    <th colspan="2">Action
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody #row>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <th class="text-center"
+                      *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                      scope="row">
+                      {{i+1}}
+                    </th>
+
+                  </tr>
+                </tbody>
+
+                <tfoot class="grey lighten-5">
+                  <tr>
+                    <td colspan="13">
+                      <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements">
+                      </mdb-table-pagination>
+                    </td>
+                  </tr>
+                  <!-- <button mdbBtn size="sm" type="button" color="default" mdbWavesEffect>Save<mdb-icon fas icon="file" class="ml-1"></mdb-icon></button> -->
+
+                </tfoot>
+              </table>
+              <!--Table-->
+            </div>
+          </div>
         </div>
       </div>
       <!--Second column-->
-      <div class="col-md-6">
-        <div class="md-form">
-          <button type="button" mdbBtn color="primary" mdbWavesEffect>Save</button>
-        </div>
-      </div>
+
     </div>
 
     <div class="row mt-5"></div>
     <div class="row mt-4"></div>
   </mdb-tab>
+
   <!--Panel 3-->
   <mdb-tab heading="<a class='list-group-item'> Task Priority</a>">
     <!--First row-->
     <div class="row mt-3">
       <!--First column-->
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="md-form">
-          <input [disabled]='false' type="text" id="form11" class="form-control" mdbInput>
-          <label class="active disabled" for="form11">Task Priority:</label>
+          <!--/Card image-->
+
+          <div class="px-4">
+            <div class="table-wrapper">
+              <div class="row mt-0">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-6 mx-auto">
+                    <div class="md-form">
+                        <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()"
+                            id="search-input" mdbInput [ngModelOptions]="{standalone: true}">
+                        <label for="search-input">Search</label>
+                    </div>
+                </div>
+                <div class="col-md-1 mx-auto">
+                    <span class="table-add float-right mb-2 mr-2 mt-2">
+                        <a class="text-success" (click)="addNewPriority()">
+                            <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+                        </a>
+                    </span>
+                </div>
+
+            </div>
+              <!--Table-->
+              <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true"
+                class="table-bordered table-responsive-md z-depth-1 text-center mb-3" small="true" mdbTableScroll
+                scrollX="true" maxWidth="1200">
+
+                <thead class="sticky-top black white-text">
+                  <tr>
+                    <th [mdbTableSort]="elements" sortBy="i">Srl
+                    </th>
+                    <th [mdbTableSort]="elements" sortBy="taskDetails">Priority Name
+                    </th>
+                    <th>Action
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody #row>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <th class="text-center"                      
+                      scope="row">
+                      {{i+1}}
+                    </th>
+                    <td class="text-left"                      
+                      (keyup)="changeValuePriority(i, 'priorityName',  $event)" (blur)="updatePriority(i, 'priorityName', $event)"
+                      contenteditable="true">
+                      {{el.priorityName}}
+                    </td>
+                    <td class="text-center" style="width:2%"
+                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                    <span>
+                        <mdb-icon fas icon="trash-alt" size="lg" class="red-text" aria-hidden="true"
+                            (click)="deletePriority(el.priorityId)" type="button"></mdb-icon>
+                    </span>
+                </td>
+                  </tr>
+                </tbody>                
+              </table>
+              <!--Table-->
+            </div>
+          </div>
         </div>
       </div>
       <!--Second column-->
-      <div class="col-md-6">
-        <div class="md-form">
-          <button type="button" mdbBtn color="success" mdbWavesEffect>Save</button>
-        </div>
-      </div>
+
     </div>
 
     <div class="row mt-5"></div>

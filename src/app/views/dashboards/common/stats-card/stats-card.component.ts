@@ -63,12 +63,12 @@ export class StatsCardComponent implements OnInit {
   previous: string;
   modalLoading: boolean = true;
 
-  // totalOpenTask: any;
-  // totalPendingTask: any;
-  // totalInProgressTask: any;
-  // totalCompletedTask: any;
-  // totalInReviewTask: any;
-  // totalRejectedTask: any;
+  totalOpenTask: any;
+  totalPendingTask: any;
+  totalInProgressTask: any;
+  totalCompletedTask: any;
+  totalInReviewTask: any;
+  totalRejectedTask: any;
 
   adminUserId: string;
   maxVisibleItems: number = 5;
