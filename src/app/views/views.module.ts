@@ -80,6 +80,9 @@ import { OutgoingMessageAuthorizationDetailsComponent } from './pages/outgoing-m
 import { QueueSwiftMessageComponent } from './pages/queue-swift-message/queue-swift-message.component';
 import { TaskEditModalComponent } from './dashboards/common/task-edit-modal/task-edit-modal.component';
 import { SetupComponent } from './setup/setup.component';
+import { SetupTaskPriorityComponent } from './pages/setup-task-priority/setup-task-priority.component';
+import { SetupTaskStatusComponent } from './pages/setup-task-status/setup-task-status.component';
+import { SetupUserComponent } from './pages/setup-user/setup-user.component';
 
 @NgModule({
   imports: [
@@ -167,6 +170,9 @@ import { SetupComponent } from './setup/setup.component';
     QueueSwiftMessageComponent,
     TaskEditModalComponent,
     SetupComponent,
+    SetupTaskPriorityComponent,
+    SetupTaskStatusComponent,
+    SetupUserComponent,
   ],
   exports: [
     FooterComponent,

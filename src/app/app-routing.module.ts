@@ -67,12 +67,18 @@ import { FinallySendMessageComponent } from './views/pages/finally-send-message/
 import { OutgoingMessageAuthorizationDetailsComponent } from './views/pages/outgoing-message-authorization-details/outgoing-message-authorization-details.component';
 import { QueueSwiftMessageComponent } from './views/pages/queue-swift-message/queue-swift-message.component';
 import { SetupComponent } from './views/setup/setup.component';
+import { SetupTaskPriorityComponent } from './views/pages/setup-task-priority/setup-task-priority.component';
+import { SetupTaskStatusComponent } from './views/pages/setup-task-status/setup-task-status.component';
+import { SetupUserComponent } from './views/pages/setup-user/setup-user.component';
 
 
 const routes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: ' ', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
+  { path: 'setup-task-priority', component: SetupTaskPriorityComponent },
+  { path: 'setup-task-status', component: SetupTaskStatusComponent },
+  { path: 'setup-user', component: SetupUserComponent },
   { path: 'setup', component: SetupComponent },
   { path: 'cbsdatamessage', component: CbsDataMessageComponent },
   { path: 'outgoingSwiftMessage', component: OutgoingSwiftMessageComponent },

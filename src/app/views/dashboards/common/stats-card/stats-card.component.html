@@ -234,11 +234,11 @@
 
                         <tbody #row>
                             <tr *ngFor="let el of elements; let i = index">
-                                <th class="text-center"
+                                <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                                    scope="row">
+                                    >
                                     {{i+1}}
-                                </th>
+                                </td>
                                 <td class="text-left"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
                                     (keyup)="changeValue(i, 'taskDetails',  $event)"

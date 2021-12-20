@@ -37,14 +37,33 @@
                                             routerLink="dashboards/v1" class="waves-effect"
                                             mdbWavesEffect>Dashboard-Maker's</a>
                                     </li>
+                                </ul>
+                            </mdb-item-body>
+                        </mdb-item>
+
+                        <mdb-item>
+                            <mdb-item-head mdbWavesEffect>
+                                <!-- <mdb-icon fas icon="tachometer-alt" class="mr-1"></mdb-icon> -->
+                                <mdb-icon fas icon="cogs" class="mr-1"></mdb-icon> Setup
+                            </mdb-item-head>
+                            <mdb-item-body>
+                                <ul>
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();"
-                                            routerLink="setup" class="waves-effect"
-                                            mdbWavesEffect>Setup</a>
+                                            routerLink="setup-task-status" class="waves-effect" mdbWavesEffect>Task Status</a>
+                                    </li>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();" 
+                                        routerLink="setup-task-priority" class="waves-effect" mdbWavesEffect>Task Priority</a>
+                                    </li>
+                                    <li>
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();" 
+                                        routerLink="setup-user" class="waves-effect" mdbWavesEffect>Users</a>
                                     </li>
                                 </ul>
                             </mdb-item-body>
                         </mdb-item>
+
                         <mdb-item>
                             <mdb-item-head mdbWavesEffect>
                                 <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon> Activity
