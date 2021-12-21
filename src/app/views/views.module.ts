@@ -68,16 +68,7 @@ import { Settings2Component } from './settings/settings2/settings2.component';
 import { Settings3Component } from './settings/settings3/settings3.component';
 import { TestComponent } from './test/test/test.component';
 import { SectionsComponent } from './sections/sections.component';
-import { CbsDataMessageComponent } from './pages/cbs-data-message/cbs-data-message.component';
-import { CbsDataMessageEditComponent } from './pages/cbs-data-message-edit/cbs-data-message-edit.component';
-import { OutgoingSwiftMessageComponent } from './pages/outgoing-swift-message/outgoing-swift-message.component';
-import { OutgoingSwiftMessageEditComponent } from './pages/outgoing-swift-message-edit/outgoing-swift-message-edit.component';
-import { OutgoingMessageAuthorizationComponent } from './pages/outgoing-message-authorization/outgoing-message-authorization.component';
-import { IncomingSwiftMessageComponent } from './pages/incoming-swift-message/incoming-swift-message.component';
-import { FinallySendMessageComponent } from './pages/finally-send-message/finally-send-message.component';
-import { SubmitSuccessMessageComponent } from './pages/submit-success-message/submit-success-message.component';
-import { OutgoingMessageAuthorizationDetailsComponent } from './pages/outgoing-message-authorization-details/outgoing-message-authorization-details.component';
-import { QueueSwiftMessageComponent } from './pages/queue-swift-message/queue-swift-message.component';
+
 import { TaskEditModalComponent } from './dashboards/common/task-edit-modal/task-edit-modal.component';
 import { SetupComponent } from './setup/setup.component';
 import { SetupTaskPriorityComponent } from './pages/setup-task-priority/setup-task-priority.component';
@@ -158,16 +149,7 @@ import { SetupUserComponent } from './pages/setup-user/setup-user.component';
     Settings3Component,
     TestComponent,
     SectionsComponent,
-    CbsDataMessageComponent,
-    CbsDataMessageEditComponent,
-    OutgoingSwiftMessageComponent,
-    OutgoingSwiftMessageEditComponent,
-    OutgoingMessageAuthorizationComponent,
-    IncomingSwiftMessageComponent,
-    FinallySendMessageComponent,
-    SubmitSuccessMessageComponent,
-    OutgoingMessageAuthorizationDetailsComponent,
-    QueueSwiftMessageComponent,
+    
     TaskEditModalComponent,
     SetupComponent,
     SetupTaskPriorityComponent,

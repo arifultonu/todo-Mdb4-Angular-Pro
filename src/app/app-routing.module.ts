@@ -55,17 +55,17 @@ import { Dashboard4Component } from './views/dashboards/dashboard4/dashboard4.co
 import { Dashboard5Component } from './views/dashboards/dashboard5/dashboard5.component';
 import { EventCalendarComponent } from './views/event-calendar/event-calendar.component';
 import { SectionsComponent } from './views/sections/sections.component';
-import { CbsDataMessageComponent } from './views/pages/cbs-data-message/cbs-data-message.component';
+// import { CbsDataMessageComponent } from './views/pages/cbs-data-message/cbs-data-message.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
-import { OutgoingSwiftMessageComponent } from './views/pages/outgoing-swift-message/outgoing-swift-message.component';
-import { OutgoingSwiftMessageEditComponent } from './views/pages/outgoing-swift-message-edit/outgoing-swift-message-edit.component';
-import { OutgoingMessageAuthorizationComponent } from './views/pages/outgoing-message-authorization/outgoing-message-authorization.component';
-import { IncomingSwiftMessageComponent } from './views/pages/incoming-swift-message/incoming-swift-message.component';
-import { FinallySendMessageComponent } from './views/pages/finally-send-message/finally-send-message.component';
-import { OutgoingMessageAuthorizationDetailsComponent } from './views/pages/outgoing-message-authorization-details/outgoing-message-authorization-details.component';
-import { QueueSwiftMessageComponent } from './views/pages/queue-swift-message/queue-swift-message.component';
+// import { OutgoingSwiftMessageComponent } from './views/pages/outgoing-swift-message/outgoing-swift-message.component';
+// import { OutgoingSwiftMessageEditComponent } from './views/pages/outgoing-swift-message-edit/outgoing-swift-message-edit.component';
+// import { OutgoingMessageAuthorizationComponent } from './views/pages/outgoing-message-authorization/outgoing-message-authorization.component';
+// import { IncomingSwiftMessageComponent } from './views/pages/incoming-swift-message/incoming-swift-message.component';
+// import { FinallySendMessageComponent } from './views/pages/finally-send-message/finally-send-message.component';
+// import { OutgoingMessageAuthorizationDetailsComponent } from './views/pages/outgoing-message-authorization-details/outgoing-message-authorization-details.component';
+// import { QueueSwiftMessageComponent } from './views/pages/queue-swift-message/queue-swift-message.component';
 import { SetupComponent } from './views/setup/setup.component';
 import { SetupTaskPriorityComponent } from './views/pages/setup-task-priority/setup-task-priority.component';
 import { SetupTaskStatusComponent } from './views/pages/setup-task-status/setup-task-status.component';
@@ -79,15 +79,7 @@ const routes: Route[] = [
   { path: 'setup-task-priority', component: SetupTaskPriorityComponent },
   { path: 'setup-task-status', component: SetupTaskStatusComponent },
   { path: 'setup-user', component: SetupUserComponent },
-  { path: 'setup', component: SetupComponent },
-  { path: 'cbsdatamessage', component: CbsDataMessageComponent },
-  { path: 'outgoingSwiftMessage', component: OutgoingSwiftMessageComponent },
-  { path: 'outgoingSwiftMessageEdit/:documentNo/:messageType/:messageName', component: OutgoingSwiftMessageEditComponent },
-  { path: 'outgoingMessageAuthorization', component: OutgoingMessageAuthorizationComponent },
-  { path: 'incomingSwiftMessage', component: IncomingSwiftMessageComponent },
-  { path: 'finallySendMessage', component: FinallySendMessageComponent }, 
-  { path: 'outgoingAuthorizaionMessageDetails/:documentNo/:messageType/:messageName', component: OutgoingMessageAuthorizationDetailsComponent },
-  { path: 'queueSwiftMessage', component: QueueSwiftMessageComponent },
+  { path: 'setup', component: SetupComponent }, 
 
   {
     path: 'dashboards',
