@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   
   validationForm: FormGroup;
   loading = false;
-  userId = '';
+  username = '';
   password = '';
   errorMessage = 'Wrong User Name/Password!';
   invalidLogin = false;
@@ -35,50 +35,63 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.jwtAuthenticationService.logOut();
+    this.jwtAuthenticationService.logout();
   }
 
-  doLoginWithJWTAuth() {    
-    if(!this.userId){
-      const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-      this.toastrService.clear();
-      this.toastrService.warning('Userid Required!', 'Sorry!', options);          
-    } else if(!this.password){
-      const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-      this.toastrService.clear();
-      this.toastrService.warning('Password Required!', 'Sorry!', options);
-    } else {
-    this.loading = true;
-    this.jwtAuthenticationService.executeJWTAuthenticationService(this.userId, this.password).subscribe(
-      (data: { token: any; map: any}) => {
-        if(data.map.errorMsg != 'Success'){
-          console.log("data.map.errorMsg: "+data.map.errorMsg);
-          this.invalidLogin = true;
-          this.loading = false;
-          const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-          this.toastrService.clear();
-          this.toastrService.error(data.map.errorMsg, 'Sorry!', options);          
-        }else{
-          console.log("else .errorMsg: "+data.map.errorMsg);
-          this.router.navigate(['dashboard2']);
-          this.invalidLogin = false;
-          this.loading = false;
-          const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-          // this.toastrService.success(data.map.errorMsg, 'Login Successfully Completed!', options);
-        }
-      },
-      (error: any) => {
-        console.log(error);
-        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-        this.toastrService.clear();
-        this.toastrService.error(error+', Please contact with system administrator.', 'Sorry!', options);
-        this.invalidLogin = true;
-        this.loading = false;
-      },      
-    )
-  } 
+  // doLoginWithJWTAuth() {    
+  //   if(!this.username){
+  //     const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+  //     this.toastrService.clear();
+  //     this.toastrService.warning('Userid Required!', 'Sorry!', options);          
+  //   } else if(!this.password){
+  //     const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+  //     this.toastrService.clear();
+  //     this.toastrService.warning('Password Required!', 'Sorry!', options);
+  //   } else {
+  //   this.loading = true;
+  //   this.jwtAuthenticationService.executeJWTAuthenticationService(this.username, this.password).subscribe(
+  //     (data: { token: any; map: any}) => {
+  //       if(data.map.errorMsg != 'Success'){
+  //         console.log("data.map.errorMsg: "+data.map.errorMsg);
+  //         this.invalidLogin = true;
+  //         this.loading = false;
+  //         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+  //         this.toastrService.clear();
+  //         this.toastrService.error(data.map.errorMsg, 'Sorry!', options);          
+  //       }else{
+  //         console.log("else .errorMsg: "+data.map.errorMsg);
+  //         this.router.navigate(['/dashboards/v1']);
+  //         this.invalidLogin = false;
+  //         this.loading = false;
+  //         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+  //         // this.toastrService.success(data.map.errorMsg, 'Login Successfully Completed!', options);
+  //       }
+  //     },
+  //     (error: any) => {
+  //       console.log(error);
+  //       const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+  //       this.toastrService.clear();
+  //       this.toastrService.error(error+', Please contact with system administrator.', 'Sorry!', options);
+  //       this.invalidLogin = true;
+  //       this.loading = false;
+  //     },      
+  //   )
+  // } 
+  // }
+
+  doLoginWithJWTAuth() {
+    this.jwtAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
+        .subscribe(
+          data => {
+            console.log(data)
+            this.router.navigate(['/dashboards/v1', this.username])
+            this.invalidLogin = false      
+          },
+          error => {
+            console.log(error)
+            this.invalidLogin = true
+          }
+        )
   }
-
-
 
 }

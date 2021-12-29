@@ -55,36 +55,30 @@ import { Dashboard4Component } from './views/dashboards/dashboard4/dashboard4.co
 import { Dashboard5Component } from './views/dashboards/dashboard5/dashboard5.component';
 import { EventCalendarComponent } from './views/event-calendar/event-calendar.component';
 import { SectionsComponent } from './views/sections/sections.component';
-// import { CbsDataMessageComponent } from './views/pages/cbs-data-message/cbs-data-message.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
-// import { OutgoingSwiftMessageComponent } from './views/pages/outgoing-swift-message/outgoing-swift-message.component';
-// import { OutgoingSwiftMessageEditComponent } from './views/pages/outgoing-swift-message-edit/outgoing-swift-message-edit.component';
-// import { OutgoingMessageAuthorizationComponent } from './views/pages/outgoing-message-authorization/outgoing-message-authorization.component';
-// import { IncomingSwiftMessageComponent } from './views/pages/incoming-swift-message/incoming-swift-message.component';
-// import { FinallySendMessageComponent } from './views/pages/finally-send-message/finally-send-message.component';
-// import { OutgoingMessageAuthorizationDetailsComponent } from './views/pages/outgoing-message-authorization-details/outgoing-message-authorization-details.component';
-// import { QueueSwiftMessageComponent } from './views/pages/queue-swift-message/queue-swift-message.component';
+
 import { SetupComponent } from './views/setup/setup.component';
 import { SetupTaskPriorityComponent } from './views/pages/setup-task-priority/setup-task-priority.component';
 import { SetupTaskStatusComponent } from './views/pages/setup-task-status/setup-task-status.component';
 import { SetupUserComponent } from './views/pages/setup-user/setup-user.component';
+import { RouteGuardService } from './services/security/route-guard.service';
 
 
 const routes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: ' ', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
-  { path: 'setup-task-priority', component: SetupTaskPriorityComponent },
-  { path: 'setup-task-status', component: SetupTaskStatusComponent },
-  { path: 'setup-user', component: SetupUserComponent },
-  { path: 'setup', component: SetupComponent }, 
+  { path: 'setup-task-priority', component: SetupTaskPriorityComponent, canActivate:[RouteGuardService]},
+  { path: 'setup-task-status', component: SetupTaskStatusComponent, canActivate:[RouteGuardService]},
+  { path: 'setup-user', component: SetupUserComponent, canActivate:[RouteGuardService]},
+  { path: 'setup', component: SetupComponent, canActivate:[RouteGuardService]}, 
 
   {
     path: 'dashboards',
     children: [
-      { path: 'v1', component: Dashboard1Component },
+      { path: 'v1/:name', component: Dashboard1Component, canActivate:[RouteGuardService]},
       { path: 'v2', component: Dashboard2Component },
       { path: 'v3', component: Dashboard3Component },
       { path: 'v4', component: Dashboard4Component },
