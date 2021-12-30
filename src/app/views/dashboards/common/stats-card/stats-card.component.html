@@ -8,7 +8,7 @@
                     <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="door-open" class="blue-grey"></mdb-icon>
                         <div class="data">
-                            <p>OPEN</p>
+                            <p style="color: rgb(95, 108, 114);">OPEN</p>
                             <h4><strong>{{totalOpenTask}}</strong></h4>
                         </div>
                     </a>
@@ -36,7 +36,7 @@
                     <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fab icon="codepen" class="warning-color"></mdb-icon>
                         <div class="data">
-                            <p>PENDING</p>
+                            <p class="text-warning">PENDING</p>
                             <h4><strong>{{totalPendingTask}}</strong></h4>
                         </div>
                     </a>
@@ -64,7 +64,7 @@
                     <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="cogs" class="light-blue lighten-1"></mdb-icon>
                         <div class="data">
-                            <p>IN-PROGRESS</p>
+                            <p class="text-primary">IN-PROGRESS</p>
                             <h4><strong>{{totalInProgressTask}}</strong></h4>
                         </div>
                     </a>
@@ -94,7 +94,7 @@
                     <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="check-circle" class="success-color"></mdb-icon>
                         <div class="data">
-                            <p>COMPLETED</p>
+                            <p class="text-success">COMPLETED</p>
                             <h4><strong>{{totalCompletedTask}}</strong></h4>
                         </div>
                     </a>
@@ -120,7 +120,7 @@
                     <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fab icon="rev" class="purple"></mdb-icon>
                         <div class="data">
-                            <p>IN-REVIEW</p>
+                            <p style="color: rgb(199, 6, 238);">IN-REVIEW</p>
                             <h4><strong>{{totalInReviewTask}}</strong></h4>
                         </div>
                     </a>
@@ -148,7 +148,7 @@
                     <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="ban" class="danger-color"></mdb-icon>
                         <div class="data">
-                            <p>REJECTED</p>
+                            <p class="text-danger">REJECTED</p>
                             <h4><strong>{{totalRejectedTask}}</strong></h4>
                         </div>
                     </a>

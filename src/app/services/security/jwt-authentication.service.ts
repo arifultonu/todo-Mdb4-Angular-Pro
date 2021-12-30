@@ -4,10 +4,8 @@ import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
 
 export const TOKEN = 'token';
-export const SESSIONID = 'sessionid';
 export const AUTHENTICATED_USER = 'authenticaterUserId';
 export const AUTHENTICATED_NAME = 'authenticaterUserName';
-export const AUTHENTICATED_DESIGNATION = 'authenticaterUserDesignation';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +28,7 @@ export class JwtAuthenticationService {
 
   executeJWTAuthenticationService(username: any, password: any) {    
     return this.http.post<any>(
-      `${JPA_API_URL}/authenticate`,{
-        username,
-        password
-      }).pipe(
+      `${JPA_API_URL}/authenticate`,{username, password}).pipe(
         map(
           data => {
             sessionStorage.setItem(AUTHENTICATED_USER, username);

@@ -10,12 +10,14 @@ export class NavigationComponent implements OnInit {
   @ViewChild('sidenav', {static: true}) sidenav: ElementRef;
 
   clicked: boolean;
+  username: string;
 
   constructor() {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
   ngOnInit() {
+    this.username = sessionStorage.getItem("authenticaterUserId");
   }
 
   setClicked(val: boolean): void {

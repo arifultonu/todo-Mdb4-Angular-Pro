@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { JwtAuthenticationService } from './services/security/jwt-authentication.service';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +29,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private location: Location
+    private location: Location,
+    public jwtAuthenticationService: JwtAuthenticationService,
+    private bnIdle: BnNgIdleService,
   ) {
 
     this.router.events.subscribe((route: any) => {
@@ -38,16 +42,23 @@ export class AppComponent implements OnInit {
       }
       this.specialPage = this.specialPages.indexOf(this.currentUrl) !== -1;
     });
+
+    this.bnIdle.startWatching(200).subscribe((res) => {
+      if (res && jwtAuthenticationService.isUserLoggedIn()) {
+        alert('Your Session has Expired!! Please Login Again to Proceed...');
+        this.router.navigate(['login']);
+      }
+    });
+
   }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
   }
 
   goBack(): void {
     this.location.back();
   }
 }
-
 
 
 export interface SelectCodeNameList{

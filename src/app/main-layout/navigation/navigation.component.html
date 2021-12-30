@@ -1,8 +1,5 @@
 <!--Double navigation-->
 <header class="fixed-top">
-
-
-
     <!-- Sidebar navigation -->
     <mdb-sidenav #sidenav class=" fixed" [fixed]="true" width="350">
 
@@ -35,7 +32,7 @@
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();"
                                             routerLink="dashboards/v1" class="waves-effect"
-                                            mdbWavesEffect>Task Board</a>
+                                            mdbWavesEffect><mdb-icon fas icon="arrow-right"></mdb-icon>Task Board</a>
                                     </li>
                                 </ul>
                             </mdb-item-body>
@@ -50,15 +47,18 @@
                                 <ul>
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();"
-                                            routerLink="setup-task-status" class="waves-effect" mdbWavesEffect>Task Status</a>
+                                            routerLink="setup-task-status" class="waves-effect" mdbWavesEffect>
+                                            <mdb-icon fas icon="arrow-right"></mdb-icon>Task Status</a>
                                     </li>
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();" 
-                                        routerLink="setup-task-priority" class="waves-effect" mdbWavesEffect>Task Priority</a>
+                                        routerLink="setup-task-priority" class="waves-effect" mdbWavesEffect>
+                                        <mdb-icon fas icon="arrow-right"></mdb-icon>Task Priority</a>
                                     </li>
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();" 
-                                        routerLink="setup-user" class="waves-effect" mdbWavesEffect>Users</a>
+                                        routerLink="setup-user" class="waves-effect" mdbWavesEffect>
+                                        <mdb-icon fas icon="arrow-right"></mdb-icon>Users</a>
                                     </li>
                                 </ul>
                             </mdb-item-body>
@@ -67,13 +67,15 @@
                         
                         <mdb-item>
                             <mdb-item-head mdbWavesEffect>
-                                <mdb-icon fas icon="file-pdf" class="mr-1"></mdb-icon> Reports
+                                <mdb-icon fas icon="file-pdf" class="mr-1"></mdb-icon> 
+                                Reports
                             </mdb-item-head>
                             <mdb-item-body>
                                 <ul>
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();" routerLink="#"
-                                            class="waves-effect" mdbWavesEffect>Task Report</a>
+                                            class="waves-effect" mdbWavesEffect>
+                                            <mdb-icon fas icon="arrow-right"></mdb-icon>Task Report</a>
                                     </li>
                                 </ul>
                             </mdb-item-body>
@@ -129,6 +131,17 @@
                     <a class="nav-link waves-light" mdbWavesEffect>
                         <mdb-icon far icon="comments" class="mr-1"></mdb-icon>
                         <span class="clearfix d-none d-sm-inline-block">Support</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect>
+                        <span class="clearfix d-none d-sm-inline-block"> | </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect>
+                        <!-- <mdb-icon far icon="comments" class="mr-1"></mdb-icon> -->
+                        <span class="clearfix d-none d-sm-inline-block">Welcome Mr. {{username}}</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown btn-group" dropdown>

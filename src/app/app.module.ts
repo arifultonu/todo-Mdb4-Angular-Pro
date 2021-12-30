@@ -49,7 +49,7 @@ import { DatePipe } from '@angular/common';
 // }
 ],
 providers: [
-  MDBSpinningPreloader, ToastService, AppCommons,
+  MDBSpinningPreloader, ToastService, AppCommons, DatePipe,
   { provide: HTTP_INTERCEPTORS, useClass: HttpIntersepterBasicAuthService, multi: true },
 ],
 bootstrap: [AppComponent],

@@ -78,7 +78,7 @@ const routes: Route[] = [
   {
     path: 'dashboards',
     children: [
-      { path: 'v1/:name', component: Dashboard1Component, canActivate:[RouteGuardService]},
+      { path: 'v1', component: Dashboard1Component, canActivate:[RouteGuardService]},
       { path: 'v2', component: Dashboard2Component },
       { path: 'v3', component: Dashboard3Component },
       { path: 'v4', component: Dashboard4Component },
