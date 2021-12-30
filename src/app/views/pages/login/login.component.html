@@ -23,13 +23,14 @@
 										</h3>
 										<hr class="hr-blue">
 									</div>
-									
+
 									<div class="md-form">
 										<input mdbInput type="text" id="form3" class="text-dark form-control"
 											[(ngModel)]="username" [ngModelOptions]="{standalone: true}">
 										<label for="form3" class="text-white">
 											<mdb-icon fas icon="user" class="text-dark active"></mdb-icon>
-											<span style="color:#000; padding-left: 15px; font-weight: 300;">User ID</span>
+											<span style="color:#000; padding-left: 15px; font-weight: 200;">User id/name
+												</span>
 										</label>
 									</div>
 									<div class="md-form">
@@ -37,15 +38,20 @@
 											[(ngModel)]="password" [ngModelOptions]="{standalone: true}">
 										<label for="form4" class="text-white">
 											<mdb-icon fas icon="lock" class="text-dark active"></mdb-icon>
-											<span style="color:#000; padding-left: 15px; font-weight: 300;">Password</span>
+											<span
+												style="color:#000; padding-left: 15px; font-weight: 300;">Password</span>
 										</label>
 									</div>
 
 									<div class="text-center">
+										<button (click)="doSignUp()" mdbBtn rounded="true" class="mr-4"
+											size="md" mdbWavesEffect routerLinkActive="active" [disabled]="loading">
+											Sign up</button>
+
 										<button (click)="doLoginWithJWTAuth()" mdbBtn color="primary" rounded="true"
 											size="md" mdbWavesEffect routerLinkActive="active" [disabled]="loading">
 											<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-											Sign In</button>
+											Login</button>
 
 										<hr class="hr-blue">
 										<div class="inline-ul text-center d-flex justify-content-center">
@@ -53,7 +59,8 @@
 												<mdb-checkbox [default]="true" [checked]="true" class="text-dark">
 													Remember me </mdb-checkbox>
 											</div>
-											<a routerLink="/forgot-password" routerLinkActive="active" class="p-2 text-green">
+											<a routerLink="/forgot-password" routerLinkActive="active"
+												class="p-2 text-green">
 												Forgot Password? </a>
 										</div>
 									</div>
@@ -68,5 +75,3 @@
 		</div>
 	</div>
 </section>
-
-

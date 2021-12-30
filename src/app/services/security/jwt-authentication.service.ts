@@ -1,7 +1,10 @@
 import { JPA_API_URL } from '../../app.constants';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { Parameters } from 'src/app/parameters';
+import { catchError } from 'rxjs/operators';
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticaterUserId';
@@ -25,6 +28,14 @@ export class JwtAuthenticationService {
   nodes: any = [];
   menuList: any = [];
 
+  private handleError(errorResponse: HttpErrorResponse){
+    if(errorResponse.error instanceof ErrorEvent){
+        console.error('Client Side Error: ', errorResponse.error);
+    } else {
+      console.error('Server Side Error: ', errorResponse);
+    }
+       return throwError('There is the problem with the Service');
+  }
 
   executeJWTAuthenticationService(username: any, password: any) {    
     return this.http.post<any>(
@@ -41,7 +52,10 @@ export class JwtAuthenticationService {
   }
 
 
-
+  userRegistrationService(param:any){
+    return this.http.post(`${JPA_API_URL}/todo/addUser`, param)
+    .pipe(catchError(this.handleError));
+  }
 
 
   // executeJWTAuthenticationService(username: any, password: any) {

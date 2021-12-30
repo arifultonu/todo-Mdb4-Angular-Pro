@@ -8,7 +8,12 @@ export class Parameters {
     customerCode: string;
     customerName: string;
     applicationId: string;
+
+    name: string;
+    email: string;
+    username: string;
     password: string;
+    
     internalCardID: string;
     physicalAddressServer: string;
     physicalAddressClient: string;
