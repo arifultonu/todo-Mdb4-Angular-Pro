@@ -1,5 +1,5 @@
 <!--Double navigation-->
-<header class="fixed-top">
+<header class="fixed-top" *ngIf="jwtAuthenticationService.isUserLoggedIn()">
     <!-- Sidebar navigation -->
     <mdb-sidenav #sidenav class=" fixed" [fixed]="true" width="350">
 

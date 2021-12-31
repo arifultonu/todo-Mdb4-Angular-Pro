@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { JwtAuthenticationService } from 'src/app/services/security/jwt-authentication.service';
 
 
 @Component({
@@ -12,7 +13,9 @@ export class NavigationComponent implements OnInit {
   clicked: boolean;
   username: string;
 
-  constructor() {
+  constructor(
+    public jwtAuthenticationService: JwtAuthenticationService,
+  ) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
