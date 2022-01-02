@@ -31,14 +31,14 @@
                                 <ul>
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();"
-                                            routerLink="dashboards/v1" class="waves-effect"
+                                            routerLink="dashboards/task-dashboard" class="waves-effect"
                                             mdbWavesEffect><mdb-icon fas icon="arrow-right"></mdb-icon>Task Board</a>
                                     </li>
                                 </ul>
                             </mdb-item-body>
                         </mdb-item>
 
-                        <mdb-item>
+                        <mdb-item *ngIf="jwtAuthenticationService.role == 'Admin'">
                             <mdb-item-head mdbWavesEffect>
                                 <!-- <mdb-icon fas icon="tachometer-alt" class="mr-1"></mdb-icon> -->
                                 <mdb-icon fas icon="cogs" class="mr-1"></mdb-icon> Setup
@@ -141,7 +141,7 @@
                 <li class="nav-item">
                     <a class="nav-link waves-light" mdbWavesEffect>
                         <!-- <mdb-icon far icon="comments" class="mr-1"></mdb-icon> -->
-                        <span class="clearfix d-none d-sm-inline-block">Welcome Mr. {{username}}</span>
+                        <span class="clearfix d-none d-sm-inline-block">Welcome {{jwtAuthenticationService.userName}}</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown btn-group" dropdown>
@@ -151,7 +151,7 @@
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
                         <!-- <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Home</a> -->
                         <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Profile</a>
-                        <a class="dropdown-item" routerLink="/dashboards/v1" href="#"
+                        <a class="dropdown-item" routerLink="/dashboards/task-dashboard" href="#"
                             routerLinkActive="active">Dashboard</a>
                         <a class="dropdown-item" routerLink="/login" href="#" routerLinkActive="active">Sign Out</a>
                     </div>

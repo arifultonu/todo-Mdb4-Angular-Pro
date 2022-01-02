@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
 
             console.log("data: " + data)
             this.toastrService.clear();
-            this.router.navigate(['/dashboards/v1'])
+            this.router.navigate(['/dashboards/task-dashboard'])
             this.invalidLogin = false;
             this.loading = false;
           },

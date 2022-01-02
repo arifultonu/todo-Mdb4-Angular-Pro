@@ -11,7 +11,6 @@ export class NavigationComponent implements OnInit {
   @ViewChild('sidenav', {static: true}) sidenav: ElementRef;
 
   clicked: boolean;
-  username: string;
 
   constructor(
     public jwtAuthenticationService: JwtAuthenticationService,
@@ -20,7 +19,6 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.username = sessionStorage.getItem("authenticaterUserId");
   }
 
   setClicked(val: boolean): void {

@@ -1,40 +1,72 @@
-.classic-admin-card .card-body {
+@media all and (min-width: 768px) {
+    tr  {
+      td {
+        vertical-align: middle !important;
+      }
+      span {
+        &:not([class]) {
+          padding: -1rem 0rem;
+        }
+      }
+    }
+  }
+  
+  .cascading-admin-card {
+    margin-top: 20px; }
+    .cascading-admin-card .admin-up {
+      margin-left: 4%;
+      margin-right: 4%;
+      margin-top: -20px; }
+      .cascading-admin-card .admin-up mdb-icon {
+        padding: 1.7rem;
+        font-size: 2rem;
+        color: #fff;
+        text-align: left;
+        margin-right: 1rem;
+        border-radius: 3px; }
+      .cascading-admin-card .admin-up .data {
+        float: right;
+        margin-top: 2rem;
+        text-align: right; }
+        .cascading-admin-card .admin-up .data p {
+          color: #999999;
+          font-size: 12px; }
+  
+  .classic-admin-card .card-body {
     color: #fff;
     margin-bottom: 0;
-    padding: 0.9rem;
-}
-
-.classic-admin-card .card-body p {
-    font-size: 13px;
-    opacity: 0.7;
-    margin-bottom: 0;
-}
-
-.classic-admin-card .card-body h4 {
-    margin-top: 10px;
-}
-
-.classic-admin-card .card-body .float-right .fa {
-    font-size: 3rem;
-    opacity: 0.5;
-}
-
-.classic-admin-card .progress {
+    padding: 0.9rem; }
+    .classic-admin-card .card-body p {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 0; }
+    .classic-admin-card .card-body h4 {
+      margin-top: 10px; }
+    .classic-admin-card .card-body .float-right mdb-icon {
+      font-size: 3rem;
+      opacity: 0.5; }
+  
+  .classic-admin-card .progress {
     margin: 0;
-    opacity: 0.7;
-}
-
-.table-ui {
-    border: 1px solid #e0e0e9;
-}
-
-.blue-gradient {
-    background: -webkit-linear-gradient(50deg, #45cafc, #303f9f);
-    background: linear-gradient(40deg, #45cafc, #4285f4);
-}
-
-.card.card-cascade {
-    .view {
-        box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15), 0 3px 12px 0 rgba(0, 0, 0, 0.15);
-    }
-}
+    opacity: 0.7; }
+  
+    
+  .cascading-admin-card .admin-up mdb-icon {
+    -webkit-box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .md-form{
+    padding-bottom: 0 !important;
+    padding-top: -10 !important;
+    margin-top: -10 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  hr {
+    margin-top: .5rem !important;
+    margin-bottom: .5rem !important;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  

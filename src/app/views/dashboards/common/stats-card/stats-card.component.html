@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="door-open" class="blue-grey"></mdb-icon>
                         <div class="data">
                             <p style="color: rgb(95, 108, 114);">OPEN</p>
@@ -33,7 +33,7 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fab icon="codepen" class="warning-color"></mdb-icon>
                         <div class="data">
                             <p class="text-warning">PENDING</p>
@@ -61,7 +61,7 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="cogs" class="light-blue lighten-1"></mdb-icon>
                         <div class="data">
                             <p class="text-primary">IN-PROGRESS</p>
@@ -91,7 +91,7 @@
         <div class="row">
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="check-circle" class="success-color"></mdb-icon>
                         <div class="data">
                             <p class="text-success">COMPLETED</p>
@@ -117,7 +117,7 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fab icon="rev" class="purple"></mdb-icon>
                         <div class="data">
                             <p style="color: rgb(199, 6, 238);">IN-REVIEW</p>
@@ -145,7 +145,7 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/v1" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="ban" class="danger-color"></mdb-icon>
                         <div class="data">
                             <p class="text-danger">REJECTED</p>
@@ -177,12 +177,10 @@
 
     <section>
         <mdb-card cascade="true" narrower="true" [ngClass]="{ 'z-depth-0': !shadows }" class="mt-5 mb-5">
-            <!--Card image-->
             <div
                 class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-center align-items-center">
                 <a href="" class="white-text mx-3" size="sm">All Task</a>
             </div>
-            <!--/Card image-->
 
             <div class="px-4">
                 <div class="table-wrapper">
@@ -206,10 +204,9 @@
                         </div>
 
                     </div>
-                    <!--Table-->
                     <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true"
                         class="table-bordered table-responsive-md z-depth-1 text-center mb-3" small="true"
-                        mdbTableScroll scrollX="true" maxWidth="1200">
+                        mdbTableScroll scrollX="true" maxWidth="100%">
 
                         <thead class="sticky-top black white-text">
                             <tr>
@@ -252,7 +249,6 @@
                                         placeholder="Select Assignee" (keyup)="changeValue(i, 'assignUserId',  $event)"
                                         (blur)="updateList(i, 'assignUserId', $event)">
                                     </mdb-select>
-                                    <!-- {{el.assignUserId}} -->
                                 </td>
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
@@ -261,7 +257,6 @@
                                         placeholder="Select Priority" (keyup)="changeValue(i, 'priorityId',  $event)"
                                         (blur)="updateList(i, 'priorityId', $event)">
                                     </mdb-select>
-                                    <!-- {{el.priorityId}} -->
                                 </td>
                                 <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
@@ -270,7 +265,6 @@
                                         placeholder="Select Status" (keyup)="changeValue(i, 'taskStatusId',  $event)"
                                         (blur)="updateList(i, 'taskStatusId', $event)">
                                     </mdb-select>
-                                    <!-- {{el.taskStatusId}} -->
                                 </td>
 
                                 <td class="text-left"
@@ -313,11 +307,9 @@
                                     </mdb-table-pagination>
                                 </td>
                             </tr>
-                            <!-- <button mdbBtn size="sm" type="button" color="default" mdbWavesEffect>Save<mdb-icon fas icon="file" class="ml-1"></mdb-icon></button> -->
 
                         </tfoot>
                     </table>
-                    <!--Table-->
                 </div>
             </div>
         </mdb-card>
