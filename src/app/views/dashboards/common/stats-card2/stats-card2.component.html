@@ -254,8 +254,9 @@
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <mdb-select [filterEnabled]="true" [options]="allStatusListSelect"
                                         [(ngModel)]="el.taskStatusId" [ngModelOptions]="{standalone: true }"
-                                        placeholder="Select Status" (keyup)="changeValue(i, 'taskStatusId',  $event)"
-                                        (blur)="updateList(i, 'taskStatusId', $event)">
+                                        placeholder="Select Status" 
+                                        (keyup)="changeValue(i, 'taskStatusId',  $event)"
+                                        (changed)="updateList(i, 'taskStatusId', $event)">
                                     </mdb-select>
                                 </td>
 
@@ -276,7 +277,7 @@
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
                                         <span type="button" color="info" size="sm" mdbWavesEffect>
-                                            <mdb-icon fas icon="save" size="lg" ></mdb-icon>
+                                            <mdb-icon fas icon="save" size="lg" (click)="updateList(i, '', $event)"></mdb-icon>
                                         </span>
                                     </span>
                                 </td>                              

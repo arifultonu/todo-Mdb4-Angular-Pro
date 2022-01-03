@@ -126,9 +126,7 @@ export class StatsCardComponent implements OnInit {
   }
 
 
-  getAllTaskByUserIdService() {
-    //const adminUserId = "2";
-    //this.userId = sessionStorage.getItem("userId");
+  getAllTaskByUserIdService() {   
     console.log("this.adminUserId: " + this.userId);
     this.dashboardService.getAllTaskByUserIdService(this.userId).subscribe(data => {
       this.map = data;
@@ -207,12 +205,10 @@ export class StatsCardComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    //Data Table
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(this.maxVisibleItems);
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
-    //Data Table//
   }
 
 

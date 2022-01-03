@@ -224,7 +224,7 @@
                                 </th>
                                 <th [mdbTableSort]="elements" sortBy="dueDate">Due Date
                                 </th>
-                                <th colspan="2">Action
+                                <th colspan="3">Action
                                 </th>
                             </tr>
                         </thead>
@@ -286,6 +286,14 @@
                                     <span>
                                         <span type="button" color="info" size="sm" mdbWavesEffect>
                                             <mdb-icon fas icon="comment-dots" size="lg"></mdb-icon>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width:2%"
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                    <span>
+                                        <span type="button" color="info" size="sm" mdbWavesEffect>
+                                            <mdb-icon fas icon="save" size="lg" (click)="updateList(i, '', $event)"></mdb-icon>
                                         </span>
                                     </span>
                                 </td>
