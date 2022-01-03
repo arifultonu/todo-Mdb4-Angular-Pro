@@ -195,7 +195,7 @@
                                 <label for="search-input">Search</label>
                             </div>
                         </div>
-                        <div class="col-md-1 mx-auto">                           
+                        <div class="col-md-1 mx-auto">
                         </div>
 
                     </div>
@@ -219,6 +219,8 @@
                                 </th>
                                 <th [mdbTableSort]="elements" sortBy="dueDate">Due Date
                                 </th>
+                                <th>Comments
+                                </th>
                                 <th>Save
                                 </th>
                             </tr>
@@ -227,13 +229,11 @@
                         <tbody #row>
                             <tr *ngFor="let el of elements; let i = index">
                                 <td class="text-center"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                                    >
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     {{i+1}}
                                 </td>
                                 <td class="text-left"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                                    >
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     {{el.taskDetails}}
                                 </td>
                                 <td class="text-center"
@@ -254,15 +254,13 @@
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <mdb-select [filterEnabled]="true" [options]="allStatusListSelect"
                                         [(ngModel)]="el.taskStatusId" [ngModelOptions]="{standalone: true }"
-                                        placeholder="Select Status" 
-                                        (keyup)="changeValue(i, 'taskStatusId',  $event)"
-                                        (changed)="updateList(i, 'taskStatusId', $event)">
+                                        placeholder="Select Status" (keyup)="changeValue(i, 'taskStatusId',  $event)"
+                                        (blur)="updateList(i, 'taskStatusId', $event)">
                                     </mdb-select>
                                 </td>
 
                                 <td class="text-left"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                                   >
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     {{el.assignDate}}
                                 </td>
 
@@ -276,11 +274,22 @@
                                 <td class="text-center" style="width:2%"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
-                                        <span type="button" color="info" size="sm" mdbWavesEffect>
-                                            <mdb-icon fas icon="save" size="lg" (click)="updateList(i, '', $event)"></mdb-icon>
+                                        <span type="button" color="info" mdbWavesEffect>
+                                            <mdb-icon fas icon="comment-dots" size="lg"
+                                                mdbPopover="And here some amazing content. It's very engaging. Right?"
+                                                placement="left" mdbPopoverHeader="Popover on left"></mdb-icon>
                                         </span>
                                     </span>
-                                </td>                              
+                                </td>
+                                <td class="text-center" style="width:2%"
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                    <span>
+                                        <span type="button" color="info" size="sm" mdbWavesEffect>
+                                            <mdb-icon fas icon="save" size="lg" (click)="updateList(i, '', $event)">
+                                            </mdb-icon>
+                                        </span>
+                                    </span>
+                                </td>
                             </tr>
                         </tbody>
 

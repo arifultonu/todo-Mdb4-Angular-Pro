@@ -96,7 +96,6 @@ export class StatsCard2Component implements OnInit {
 
   ngOnInit() {
     this.userId = this.jwtAuthenticationService.userId;
-
     this.statsCardForm = new FormGroup({
       'searchText': new FormControl(),
     });    

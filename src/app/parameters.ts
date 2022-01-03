@@ -39,4 +39,11 @@ export class Parameters {
     modifyBy: string;
     modifyDate: string;
     approveStatus: string;
+
+    taskId: string;   
+    assignUserId: string;   
+    comments: string;   
+
+
+
 }

@@ -7,15 +7,30 @@
       </span>
     </button>
     <h6 class="modal-title w-100" id="myModalLabel">
-      <mdb-icon fas icon="comment-dots" size="lg"></mdb-icon> {{editableRow.taskDetails}}</h6>
+      <mdb-icon fas icon="comment-dots" size="lg"></mdb-icon> {{editableRow.taskDetails}}
+    </h6>
   </div>
+
   <div class="modal-body">
+
+    <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+      <tr *ngFor="let el2 of elements">
+        <td class="text-left" style="font-size: 11pt;">         
+            <mdb-icon fas icon="square" size="sm" style="color: rgb(255, 36, 72);">
+            </mdb-icon>
+            <span style="color: rgb(3, 94, 185);" class="me-2"> {{el2.comments}} </span>         
+          <hr />
+        </td>
+      </tr>
+    </table>
+    <hr />
+
     <form [formGroup]="form">
       <div class="md-form form-sm">
-        <textarea id="comment" type="text" class="md-textarea form-control form-control-sm" rows="2"
-          formControlName="comment" mdbInput mdbValidate [validateSuccess]="false"></textarea>
-        <label for="comment">Comment:</label>
-        <mdb-error *ngIf="comment.invalid && (comment.dirty || comment.touched)">Input is required</mdb-error>
+        <textarea id="comments" type="text" class="md-textarea form-control form-control-sm" rows="1"
+          formControlName="comments" mdbInput mdbValidate [validateSuccess]="false"></textarea>
+        <label for="comments">Comment:</label>
+        <mdb-error *ngIf="comments.invalid && (comments.dirty || comments.touched)">Input is required</mdb-error>
       </div>
 
     </form>
@@ -25,7 +40,7 @@
       (click)="modalRef.hide()" mdbWavesEffect>Close
     </button>
     <button type="button" mdbBtn color="primary" class="relative waves-light" size="sm" mdbWavesEffect
-      [disabled]="form.invalid" (click)="editRow()">Save
+      [disabled]="form.invalid" (click)="submitComment(); modalRef.hide()">Save
     </button>
   </div>
 </div>
