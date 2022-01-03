@@ -18,6 +18,12 @@ export class DashboardService {
     return this.httpClient.get<Todo[]>(`${JPA_API_URL}/todo/getAllTaskByUserId/${adminUserId}`)
     .pipe(catchError(this.handleError));
   }
+  
+  getAllTaskByAssignUserIdService(assignUserId: String): Observable<any> {
+    console.log("Service adminUserId: "+assignUserId );
+    return this.httpClient.get<Todo[]>(`${JPA_API_URL}/todo/getAllTaskByAssignUserId/${assignUserId}`)
+    .pipe(catchError(this.handleError));
+  }
 
   deleteTask(id: string){
     console.log("ID: "+ id);

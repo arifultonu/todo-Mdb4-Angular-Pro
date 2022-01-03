@@ -7,8 +7,10 @@ import { Parameters } from 'src/app/parameters';
 import { catchError } from 'rxjs/operators';
 
 export const TOKEN = 'token';
-export const AUTHENTICATED_USER = 'authenticaterUserId';
-export const AUTHENTICATED_NAME = 'authenticaterUserName';
+export const AUTHENTICATED_USER_ROLE = 'authenticaterUserRole';
+export const AUTHENTICATED_USER_ID = 'authenticaterUserId';
+export const AUTHENTICATED_USER_NAME = 'authenticaterUserName';
+export const AUTHENTICATED_USER_FULL_NAME = 'authenticaterUserFullName';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +21,11 @@ export class JwtAuthenticationService {
     private http: HttpClient
   ) {}
 
-  tokenVal = '';
+  
   userId = '';
+  userFullName = '';
   role = '';
+  tokenVal = '';
   userName: any = '';
   designation: any = '';
   companyName: any = '';
@@ -44,9 +48,15 @@ export class JwtAuthenticationService {
         map(
           data => {
             console.log("role: "+`${data.role}`);
-            sessionStorage.setItem(AUTHENTICATED_USER, username);
-            sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
-            this.userName = sessionStorage.getItem(AUTHENTICATED_USER);
+            sessionStorage.setItem(AUTHENTICATED_USER_ID, `${data.id}`);
+            sessionStorage.setItem(AUTHENTICATED_USER_FULL_NAME, `${data.name}`);
+            sessionStorage.setItem(AUTHENTICATED_USER_NAME, username);
+            sessionStorage.setItem(AUTHENTICATED_USER_ROLE, `${data.role}`);
+            sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);            
+
+            this.userName = username;
+            this.userFullName = `${data.name}`;
+            this.userId = `${data.id}`;
             this.role = `${data.role}`;
             return data;
           }
@@ -63,7 +73,7 @@ export class JwtAuthenticationService {
 
   
   getAuthenticatedUser() {
-    return sessionStorage.getItem(AUTHENTICATED_USER)
+    return sessionStorage.getItem(AUTHENTICATED_USER_NAME)
   }
 
   getAuthenticatedToken() {
@@ -72,13 +82,17 @@ export class JwtAuthenticationService {
   }
 
   isUserLoggedIn() {
-    let userName = sessionStorage.getItem(AUTHENTICATED_USER)
+    let userName = sessionStorage.getItem(AUTHENTICATED_USER_NAME)
     return !(userName === null)
   }
 
   logout(){
-    sessionStorage.removeItem(AUTHENTICATED_USER)
-    sessionStorage.removeItem(TOKEN)
+    sessionStorage.removeItem(AUTHENTICATED_USER_ID);
+    sessionStorage.removeItem(AUTHENTICATED_USER_FULL_NAME);
+    sessionStorage.removeItem(AUTHENTICATED_USER_NAME);
+    sessionStorage.removeItem(AUTHENTICATED_USER_ROLE);
+    sessionStorage.removeItem(TOKEN);           
+
   }
 
 }

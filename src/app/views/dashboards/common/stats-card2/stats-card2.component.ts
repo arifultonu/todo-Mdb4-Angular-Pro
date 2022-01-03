@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { SelectCodeNameList } from 'src/app/app.component';
 import { TaskEditModalComponent } from '../task-edit-modal/task-edit-modal.component';
+import { JwtAuthenticationService } from 'src/app/services/security/jwt-authentication.service';
 
 export class NewTaskRow {
   public constructor(
@@ -77,6 +78,7 @@ export class StatsCard2Component implements OnInit {
   editField: string;
   id: number = 0;
   visible = false;
+  userId: any;
 
   constructor(
     private router: Router,
@@ -85,6 +87,7 @@ export class StatsCard2Component implements OnInit {
     private toastrService: ToastService,
     private datePipe: DatePipe,
     private modalService: MDBModalService,
+    private jwtAuthenticationService: JwtAuthenticationService,
   ) { }
 
   @HostListener('input') oninput() {
@@ -93,6 +96,8 @@ export class StatsCard2Component implements OnInit {
 
 
   ngOnInit() {
+    this.userId = this.jwtAuthenticationService.userId;
+
     this.statsCardForm = new FormGroup({
       'searchText': new FormControl(),
     });    
@@ -100,7 +105,7 @@ export class StatsCard2Component implements OnInit {
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
-    this.taskrow = new NewTaskRow(this.id,'2','','','','YYYY/MM/DD','YYYY/MM/DD','','');
+    this.taskrow = new NewTaskRow(this.id, this.userId,'','','','YYYY/MM/DD','YYYY/MM/DD','','');
   }
 
   editRow(el: any) {
@@ -110,7 +115,6 @@ export class StatsCard2Component implements OnInit {
         editableRow: el
       }
     };
-    console.log('elementIndex: ' + elementIndex);
    this.modalRef = this.modalService.show(TaskEditModalComponent, modalOptions);
     this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {
       this.elements[elementIndex] = newElement;
@@ -120,10 +124,9 @@ export class StatsCard2Component implements OnInit {
 
   
 getAllTaskByUserIdService() {
-    const adminUserId = "2";
-    // this.userId = sessionStorage.getItem("userId");
-    console.log("this.adminUserId: " + adminUserId);
-    this.dashboardService.getAllTaskByUserIdService(adminUserId).subscribe(data => {
+
+  console.log("getAllTaskByUserIdService this.userId: "+this.userId);
+    this.dashboardService.getAllTaskByAssignUserIdService(this.userId).subscribe(data => {
       this.map = data;
       this.elements = this.map;
       console.log(this.elements);
