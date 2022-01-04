@@ -51,6 +51,7 @@ export class JwtAuthenticationService {
             console.log("userName: " + `${data.username}`);
             console.log("userFullName: " + `${data.name}`);
             console.log("role: " + `${data.role}`);
+            this.tokenVal = `${data.token}`;
             if (this.tokenVal.length > 0) {
               sessionStorage.setItem(AUTHENTICATED_USER_ID, `${data.id}`);
               sessionStorage.setItem(AUTHENTICATED_USER_FULL_NAME, `${data.name}`);
@@ -87,12 +88,10 @@ export class JwtAuthenticationService {
 
   isUserLoggedIn() {
     let username = sessionStorage.getItem(AUTHENTICATED_USER_NAME);
-    //Get Session on reload page
     this.userName = sessionStorage.getItem('authenticaterUserName');
     this.userFullName = sessionStorage.getItem('authenticaterUserFullName');
     this.userId = sessionStorage.getItem('authenticaterUserId');
     this.role = sessionStorage.getItem('authenticaterUserRole');
-
     return !(username === null);
   }
 

@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     if (!this.username) {
       const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
       this.toastrService.clear();
-      this.toastrService.error('Userid/name Required!', 'Sorry!', options);
+      this.toastrService.error('User Name Required!', 'Sorry!', options);
     } else if (!this.password) {
       const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
       this.toastrService.clear();
