@@ -1,11 +1,10 @@
 <form [formGroup]="statsCardForm">
 
     <section class="my-2">
-
         <div class="row">
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="door-open" class="blue-grey"></mdb-icon>
                         <div class="data">
                             <p style="color: rgb(95, 108, 114);">OPEN</p>
@@ -28,12 +27,11 @@
                         </table>
                     </mdb-card-body>
                 </mdb-card>
-
             </div>
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fab icon="codepen" class="warning-color"></mdb-icon>
                         <div class="data">
                             <p class="text-warning">PENDING</p>
@@ -61,7 +59,7 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="cogs" class="light-blue lighten-1"></mdb-icon>
                         <div class="data">
                             <p class="text-primary">IN-PROGRESS</p>
@@ -83,7 +81,6 @@
                             </tr>
                         </table>
                     </mdb-card-body>
-
                 </mdb-card>
             </div>
 
@@ -91,7 +88,7 @@
         <div class="row">
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="check-circle" class="success-color"></mdb-icon>
                         <div class="data">
                             <p class="text-success">COMPLETED</p>
@@ -117,7 +114,7 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fab icon="rev" class="purple"></mdb-icon>
                         <div class="data">
                             <p style="color: rgb(199, 6, 238);">IN-REVIEW</p>
@@ -145,7 +142,7 @@
 
             <div class="col-xl-4 col-md-6 my-4">
                 <mdb-card cascade="true" class="cascading-admin-card">
-                    <a class="admin-up" routerLink="/dashboards/task-dashboard" routerLinkActive="active" type="submit">
+                    <a class="admin-up" routerLink="/task-dashboard" routerLinkActive="active" type="submit">
                         <mdb-icon fas icon="ban" class="danger-color"></mdb-icon>
                         <div class="data">
                             <p class="text-danger">REJECTED</p>
@@ -232,8 +229,7 @@
                         <tbody #row>
                             <tr *ngFor="let el of elements; let i = index">
                                 <td class="text-center"
-                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                                    >
+                                    *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     {{i+1}}
                                 </td>
                                 <td class="text-left"
@@ -294,7 +290,7 @@
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
                                         <mdb-icon fas icon="trash-alt" size="lg" class="red-text" aria-hidden="true"
-                                            (click)="deleteTask(el.id)" type="button"></mdb-icon>
+                                            (click)="deleteTask(el.id); deleteComment(el.id)" type="button"></mdb-icon>
                                     </span>
                                 </td>
                             </tr>

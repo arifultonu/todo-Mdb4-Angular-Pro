@@ -31,6 +31,12 @@ export class DashboardService {
       .pipe(catchError(this.handleError));
   }
 
+  deleteCommentByTaskId(taskId: string) {
+    console.log("ID: " + taskId);
+    return this.httpClient.delete(`${JPA_API_URL}/todo/deleteCommentById/${taskId}`)
+      .pipe(catchError(this.handleError));
+  }
+
   getAllUserDataListService() {
     return this.httpClient.get(`${JPA_API_URL}/todo/getAllUserSelectDataList`)
       .pipe(catchError(this.handleError));

@@ -8,8 +8,11 @@
             <li>
                 <div class="logo-wrapper waves-light">
                     <h3>
-                        <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center"
-                            alt="e-Swift">
+                        <a class="breadcrumbs breadcrumb-dn mr-auto" routerLink="/task-dashboard" href="#" routerLinkActive="active">
+                            <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" alt="todo">
+                          </a>
+                        <!-- <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center"
+                            alt="e-Swift"> -->
                     </h3>
                 </div>
             </li>
@@ -110,14 +113,20 @@
             </div>
             <!--/. SideNav slide-out button -->
         </navlinks>
+
         <logo>
-            <!-- Breadcrumb-->
+            <a class="breadcrumbs breadcrumb-dn mr-auto" routerLink="/task-dashboard" href="#" routerLinkActive="active">
+              <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" height="30" alt="todo">
+            </a>
+          </logo>
+
+
+        <!-- <logo>
             <div class="breadcrumbs breadcrumb-dn mr-auto">
                 <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" height="30"
                     alt="e-Swift">
             </div>
-            <!--/. Breadcrumb-->
-        </logo>
+        </logo> -->
         <navlinks>
 
             <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav">
@@ -162,7 +171,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
                         <!-- <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Home</a> -->
-                        <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Profile</a>
+                        <a class="dropdown-item" routerLink="/profiles/profile1" href="#" routerLinkActive="active">Profile</a>
                         <a class="dropdown-item" routerLink="/task-dashboard" href="#"
                             routerLinkActive="active">Dashboard</a>
                         <a class="dropdown-item" routerLink="/login" href="#" routerLinkActive="active">Sign Out</a>

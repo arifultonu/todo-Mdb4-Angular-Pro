@@ -216,8 +216,6 @@ export class StatsCardComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
-
-
   updateTask(paramBody) {
     this.dashboardService.updateTask(paramBody).subscribe(
       data => {
@@ -234,7 +232,6 @@ export class StatsCardComponent implements OnInit {
         this.toastrService.error(error, 'Sorry!', options);
       }
     );
-
   }
 
 
@@ -257,6 +254,28 @@ export class StatsCardComponent implements OnInit {
   deleteTask(id: any) {
     console.log(`delete todo ${id}`);
     this.dashboardService.deleteTask(id).subscribe(
+      data => {
+        this.map = data;
+        //this.deleteComment(id);
+        console.log(data);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.success(this.map.responseMessage, 'Success!', options);
+        this.ngOnInit();
+      }, (error: any) => {
+        console.log(error);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.error(error, 'Sorry!', options);
+      }
+    );
+
+  }
+
+
+  deleteComment(taskId: any) {
+    console.log(`delete todo ${taskId}`);
+    this.dashboardService.deleteCommentByTaskId(taskId).subscribe(
       data => {
         this.map = data;
         console.log(data);
