@@ -7,19 +7,19 @@
       </span>
     </button>
     <h6 class="modal-title w-100" id="myModalLabel">
-      <mdb-icon fas icon="comment-dots" size="lg"></mdb-icon> {{editableRow.taskDetails}}
+      <mdb-icon fas icon="square" size="sm" class="me-1" style="color: rgb(255, 36, 72);">
+      </mdb-icon> {{editableRow.taskDetails}}
     </h6>
   </div>
 
   <div class="modal-body">
-
     <table mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
       <tr *ngFor="let el2 of elements">
-        <td class="text-left" style="font-size: 11pt;">         
-            <mdb-icon fas icon="square" size="sm" style="color: rgb(255, 36, 72);">
-            </mdb-icon>
-            <span style="color: rgb(3, 94, 185);" class="me-2"> {{el2.comments}} </span>         
-          <hr />
+        <td class="text-left" style="font-size: 11pt;">   
+            <mdb-icon fas icon="comments" size="sm"></mdb-icon>
+            <span style="color: rgb(3, 94, 185);" class="me-1"> User Id- {{el2.assignUserId}}:  
+              <mdb-icon fas icon="quote-left" class="pl-1 pr-1" size="sm"></mdb-icon>{{el2.comments}} </span>         
+          <hr/>
         </td>
       </tr>
     </table>

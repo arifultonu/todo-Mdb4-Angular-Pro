@@ -1,17 +1,6 @@
-<!-- <app-navigation *ngIf="!specialPage">
-</app-navigation>
-
-<main>
-    <router-outlet></router-outlet>
-</main>
-
-<app-footer *ngIf="!specialPage"></app-footer> -->
-
 <app-navigation></app-navigation>
-
 <main class="mx-lg-3">
     <router-outlet></router-outlet>
 </main>
-
 <app-footer *ngIf="jwtAuthenticationService.isUserLoggedIn()"></app-footer>
 

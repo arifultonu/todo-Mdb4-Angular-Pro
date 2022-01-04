@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild, HostListener, ChangeDetectorRef } from '@angular/core';
-import { MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
+import { IMyOptions, MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { Parameters } from 'src/app/parameters';
 import { DashboardService } from 'src/app/services/data/e-swift/dashboard.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -95,20 +95,25 @@ export class StatsCardComponent implements OnInit {
     this.mdbTablePagination.searchText = this.searchText;
   }
 
-
   ngOnInit() {
     this.userId = this.jwtAuthenticationService.userId;
     console.log("const userId: " + this.userId);
 
     this.statsCardForm = new FormGroup({
       'searchText': new FormControl(),
+      'dueDate': new FormControl(),
     });
     this.getAllTaskByUserIdService();
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
-    this.taskrow = new NewTaskRow(this.id, this.userId, '', '', '', 'YYYY/MM/DD', 'YYYY/MM/DD', '', '');
+    this.taskrow = new NewTaskRow(this.id, this.userId, '', '', '', '', '', '', '');
   }
+
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+  };
+
 
   editRow(el: any) {
     const elementIndex = this.elements.findIndex((elem: any) => el === elem);
@@ -126,7 +131,7 @@ export class StatsCardComponent implements OnInit {
   }
 
 
-  getAllTaskByUserIdService() {   
+  getAllTaskByUserIdService() {
     console.log("this.adminUserId: " + this.userId);
     this.dashboardService.getAllTaskByUserIdService(this.userId).subscribe(data => {
       this.map = data;
@@ -238,13 +243,16 @@ export class StatsCardComponent implements OnInit {
     this.elements[id][property] = editField;
     console.log(this.elements);
     this.todo = this.elements;
-    this.updateTask(this.todo);
+    //this.updateTask(this.todo);
   }
 
   changeValue(id: number, property: any, event: any) {
     this.editField = event.target.textContent;
   }
 
+  save() {
+    this.updateTask(this.todo);
+  }
 
   deleteTask(id: any) {
     console.log(`delete todo ${id}`);

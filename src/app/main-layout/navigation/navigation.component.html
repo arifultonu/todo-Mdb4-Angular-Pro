@@ -31,7 +31,7 @@
                                 <ul>
                                     <li>
                                         <a routerLinkActive="active" (click)="sidenav.toggle();"
-                                            routerLink="dashboards/task-dashboard" class="waves-effect"
+                                            routerLink="task-dashboard" class="waves-effect"
                                             mdbWavesEffect><mdb-icon fas icon="arrow-right"></mdb-icon>Task Board</a>
                                     </li>
                                 </ul>
@@ -121,6 +121,16 @@
         <navlinks>
 
             <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav">
+                <!-- <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect>
+                        <mdb-icon far icon="bell" size="lg" class="red-text pr-1" aria-hidden="true"
+                        ></mdb-icon>
+                    </a>
+                    <a class="nav-link waves-light" mdbWavesEffect *ngIf="">
+                        <mdb-icon far icon="bell" size="lg" class="pr-1" aria-hidden="true"
+                        ></mdb-icon>
+                    </a>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link waves-light" mdbWavesEffect>
                         <mdb-icon far icon="envelope" class="mr-1"></mdb-icon>
@@ -141,7 +151,9 @@
                 <li class="nav-item">
                     <a class="nav-link waves-light" mdbWavesEffect>
                         <!-- <mdb-icon far icon="comments" class="mr-1"></mdb-icon> -->
-                        <span class="clearfix d-none d-sm-inline-block">Welcome {{jwtAuthenticationService.userFullName}}</span>
+                        <span class="clearfix d-none d-sm-inline-block">
+                            Welcome {{jwtAuthenticationService.userFullName}}
+                        </span>
                     </a>
                 </li>
                 <li class="nav-item dropdown btn-group" dropdown>
@@ -151,7 +163,7 @@
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
                         <!-- <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Home</a> -->
                         <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Profile</a>
-                        <a class="dropdown-item" routerLink="/dashboards/task-dashboard" href="#"
+                        <a class="dropdown-item" routerLink="/task-dashboard" href="#"
                             routerLinkActive="active">Dashboard</a>
                         <a class="dropdown-item" routerLink="/login" href="#" routerLinkActive="active">Sign Out</a>
                     </div>

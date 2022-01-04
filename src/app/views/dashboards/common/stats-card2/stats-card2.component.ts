@@ -221,7 +221,6 @@ getAllTaskByUserIdService() {
         this.toastrService.error(error, 'Sorry!', options);
       }
     );
-
   }
 
 
@@ -230,13 +229,16 @@ getAllTaskByUserIdService() {
     this.elements[id][property] = editField;
     console.log(this.elements);
     this.todo = this.elements;
-    this.updateTask(this.todo);
+    // this.updateTask(this.todo);
   }
 
   changeValue(id: number, property: any, event: any) {
     this.editField = event.target.textContent;
   }
  
+  save() {
+    this.updateTask(this.todo);
+  }
 
   deleteTask(id: any) {
     console.log(`delete todo ${id}`);
@@ -255,7 +257,6 @@ getAllTaskByUserIdService() {
         this.toastrService.error(error, 'Sorry!', options);
       }
     );
-
   }
 
 

@@ -20,6 +20,7 @@ import { AppCommons } from './app.commons';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpIntersepterBasicAuthService } from './services/configuration/http-intersepter-basic-auth.service';
 import { DatePipe } from '@angular/common';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 @NgModule({
     declarations: [
@@ -40,19 +41,12 @@ import { DatePipe } from '@angular/common';
         AgmCoreModule.forRoot({
             apiKey: 'your key here'
         })
-//     ],
-//     providers: [MDBSpinningPreloader, ToastService],
-//     bootstrap: [AppComponent],
-//     schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
-// })
-// export class AppModule {
-// }
-],
-providers: [
-  MDBSpinningPreloader, ToastService, AppCommons, DatePipe,
-  { provide: HTTP_INTERCEPTORS, useClass: HttpIntersepterBasicAuthService, multi: true },
-],
-bootstrap: [AppComponent],
-schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
-})
-export class AppModule { }
+    ],
+    providers: [
+      MDBSpinningPreloader, ToastService, AppCommons, DatePipe, BnNgIdleService,
+      { provide: HTTP_INTERCEPTORS, useClass: HttpIntersepterBasicAuthService, multi: true },
+    ],
+    bootstrap: [AppComponent],
+    schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
+    })
+    export class AppModule { }

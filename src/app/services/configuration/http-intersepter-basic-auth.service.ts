@@ -14,9 +14,10 @@ export class HttpIntersepterBasicAuthService implements HttpInterceptor{
 
   intercept(request: HttpRequest<any>, next: HttpHandler){
     let jwtAuthHeaderString = this.jwtAuthenticationService.getAuthenticatedToken();
-    let userId = this.jwtAuthenticationService.getAuthenticatedUser();
+    let userName = this.jwtAuthenticationService.getAuthenticatedUser();
 
-    if(jwtAuthHeaderString && userId){
+    if(jwtAuthHeaderString && userName){
+      console.log(this.jwtAuthenticationService.getAuthenticatedUser());
     request = request.clone({
       setHeaders : {
         Authorization: jwtAuthHeaderString

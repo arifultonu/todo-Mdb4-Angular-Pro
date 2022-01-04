@@ -43,6 +43,7 @@ export class Parameters {
     taskId: string;   
     assignUserId: string;   
     comments: string;   
+    date: string;   
 
 
 

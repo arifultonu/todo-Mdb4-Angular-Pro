@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,8 +14,6 @@ import { UserRegistrationModalComponent } from '../user-registration-modal/user-
   styleUrls: ['./login.component.scss'],
 })
 
-
-
 export class LoginComponent implements OnInit {
 
   validationForm: FormGroup;
@@ -27,7 +26,7 @@ export class LoginComponent implements OnInit {
   branchName: any;
   parameters: any = new Parameters();
   modalRef: MDBModalRef;
-  
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -53,30 +52,40 @@ export class LoginComponent implements OnInit {
       this.toastrService.error('Password Required!', 'Sorry!', options);
     } else {
       this.loading = true;
-      this.jwtAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
-        .subscribe(
-          data => {
+      // this.jwtAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
+      //   .subscribe(
+      //     data => {
+      this.jwtAuthenticationService.executeJWTAuthenticationService(this.username, this.password).subscribe(
+        (data: { token: any; map: any }) => {
+          console.log("data: " + data.token);
 
-            console.log("data: " + data)
+          if (data.token != "" || data.token != " " || data.token != null) {
             this.toastrService.clear();
-            this.router.navigate(['/dashboards/task-dashboard'])
+            this.router.navigate(['/task-dashboard']);
             this.invalidLogin = false;
             this.loading = false;
-          },
-          error => {
-            console.log("error: "+error.error);            
-            this.toastrService.clear();
-            const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-            this.toastrService.error(error.error +' !', 'Login Failed!', options);
+          } else{
             this.invalidLogin = true;
             this.loading = false;
+            const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+            this.toastrService.clear();
+            this.toastrService.error(data.map.errorMsg, 'Sorry!', options);
           }
-        )
+        },
+        error => {
+          console.log("error: " + error.error);
+          this.toastrService.clear();
+          const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+          this.toastrService.error(error.error + ' !', 'Login Failed!', options);
+          this.invalidLogin = true;
+          this.loading = false;
+        }
+      )
     }
   }
 
-  doSignUp(){
-    this.modalRef = this.modalService.show(UserRegistrationModalComponent, ''); 
+  doSignUp() {
+    this.modalRef = this.modalService.show(UserRegistrationModalComponent, '');
   }
 
 

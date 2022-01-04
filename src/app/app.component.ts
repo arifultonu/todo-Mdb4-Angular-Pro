@@ -8,7 +8,6 @@ import { BnNgIdleService } from 'bn-ng-idle';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
-
 })
 
 export class AppComponent implements OnInit {
@@ -17,7 +16,7 @@ export class AppComponent implements OnInit {
   specialPage: boolean;
 
   private specialPages: any[] = [    
-   '/login',
+    // '/login',
     // '/pages/register',
     // '/pages/lock',
     // '/pages/pricing',
@@ -43,7 +42,8 @@ export class AppComponent implements OnInit {
       this.specialPage = this.specialPages.indexOf(this.currentUrl) !== -1;
     });
 
-    this.bnIdle.startWatching(200).subscribe((res) => {
+
+    this.bnIdle.startWatching(1800).subscribe((res) => {
       if (res && jwtAuthenticationService.isUserLoggedIn()) {
         alert('Your Session has Expired!! Please Login Again to Proceed...');
         this.router.navigate(['login']);
@@ -52,12 +52,13 @@ export class AppComponent implements OnInit {
 
   }
 
-   ngOnInit(): void {
+    ngOnInit(): void {
   }
 
   goBack(): void {
     this.location.back();
-  }
+  } 
+
 }
 
 

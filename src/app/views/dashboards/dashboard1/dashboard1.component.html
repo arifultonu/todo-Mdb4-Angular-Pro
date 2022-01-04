@@ -1,2 +1,2 @@
-<app-stats-card *ngIf="jwtAuthenticationService.role == 'Admin'"></app-stats-card>
-<app-stats-card2 *ngIf="jwtAuthenticationService.role == 'User'"></app-stats-card2>
+<app-stats-card *ngIf="jwtAuthenticationService.role === 'Admin'"></app-stats-card>
+<app-stats-card2 *ngIf="jwtAuthenticationService.role === 'User'"></app-stats-card2>

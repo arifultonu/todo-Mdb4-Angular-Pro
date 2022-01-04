@@ -6,12 +6,11 @@ import { JwtAuthenticationService } from '../security/jwt-authentication.service
 @Injectable({
   providedIn: 'root'
 })
-export class RouteGuardService implements CanActivate {
 
+export class RouteGuardService implements CanActivate {
   constructor(
     private jwtAuthenticationService: JwtAuthenticationService,
     private router: Router) {
-
   }
 
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {

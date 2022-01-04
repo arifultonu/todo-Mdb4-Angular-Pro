@@ -16,9 +16,18 @@ export class NavigationComponent implements OnInit {
     public jwtAuthenticationService: JwtAuthenticationService,
   ) {
     this.clicked = this.clicked === undefined ? false : true;
+  }  
+
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  logout() {
+    this.jwtAuthenticationService.logout();
   }
 
   ngOnInit() {
+    console.log("this.jwtAuthenticationService.username: "+this.jwtAuthenticationService.userName);
   }
 
   setClicked(val: boolean): void {

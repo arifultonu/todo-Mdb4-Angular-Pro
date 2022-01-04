@@ -217,10 +217,10 @@
                                 </th>
                                 <th [mdbTableSort]="elements" sortBy="assignDate">Assign Date
                                 </th>
-                                <th [mdbTableSort]="elements" sortBy="dueDate">Due Date
+                                <th [mdbTableSort]="elements" sortBy="dueDate">Modify Date
                                 </th>
-                                <th>Comments
-                                </th>
+                                <!-- <th>Comments
+                                </th> -->
                                 <th>Save
                                 </th>
                             </tr>
@@ -259,19 +259,19 @@
                                     </mdb-select>
                                 </td>
 
-                                <td class="text-left"
+                                <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     {{el.assignDate}}
                                 </td>
 
-                                <td class="text-left"
+                                <td class="text-center"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
                                     (keyup)="changeValue(i, 'dueDate',  $event)"
                                     (blur)="updateList(i, 'dueDate', $event)" contenteditable="true">
                                     {{el.dueDate}}
                                 </td>
 
-                                <td class="text-center" style="width:2%"
+                                <!-- <td class="text-center" style="width:2%"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
                                         <span type="button" color="info" mdbWavesEffect>
@@ -280,12 +280,12 @@
                                                 placement="left" mdbPopoverHeader="Popover on left"></mdb-icon>
                                         </span>
                                     </span>
-                                </td>
+                                </td> -->
                                 <td class="text-center" style="width:2%"
                                     *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <span>
                                         <span type="button" color="info" size="sm" mdbWavesEffect>
-                                            <mdb-icon fas icon="save" size="lg" (click)="updateList(i, '', $event)">
+                                            <mdb-icon fas icon="save" size="lg" class="blue-text" (click)="save()">
                                             </mdb-icon>
                                         </span>
                                     </span>

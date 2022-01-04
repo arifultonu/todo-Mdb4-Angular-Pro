@@ -1,21 +1,30 @@
+import { DatePipe } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { ToastService } from "projects/ng-uikit-pro-standard/src/public_api";
 
+@Injectable({
+    providedIn: 'root'
+  })
+  
+
 export class AppCommons {
+    formatedDate;
+    sysDate = new Date(Date.now());
+    dateParam: any;
 
-    constructor(){}
+    constructor(
+        private httpClient: HttpClient,
+        private datePipe: DatePipe,
+    ){}
+    
+    
+    getFormatedSysDate(dateParam: any) {
+        this.formatedDate = this.datePipe.transform(dateParam, 'dd-MMM-yyyy');
+        return this.formatedDate;
+      }
 
-    /*
-        get the message for procedure calling.....
-    */
-    getProcedureCallToastMsg(code : any, msg : any, toastrService: ToastService){
-        if(code === '0'){
-            toastrService.success(msg);
-        }else if(code === '1' || code === '2'){
-            toastrService.error(code + ' - ' + msg);
-        }else{
-            toastrService.error(code + ' - ' + msg);
-        }
 
-    }
-
+      
 }
+

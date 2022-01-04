@@ -68,8 +68,6 @@ export class DashboardService {
       .pipe(catchError(this.handleError));
   }
 
-
-
   private handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('Client Side Error: ', errorResponse.error);
