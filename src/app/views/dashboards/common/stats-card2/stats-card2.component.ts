@@ -94,17 +94,77 @@ export class StatsCard2Component implements OnInit {
     this.mdbTablePagination.searchText = this.searchText;
   }
 
-  ngOnInit() {
+    ngOnInit() {
     this.userId = this.jwtAuthenticationService.userId;
     this.statsCardForm = new FormGroup({
       'searchText': new FormControl(),
+      'taskStatusId': new FormControl(),
+      'dueDate': new FormControl(),
     });    
     this.getAllTaskByUserIdService();
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
-    this.taskrow = new NewTaskRow(this.id, this.userId,'','','','YYYY/MM/DD','YYYY/MM/DD','','');
+    this.taskrow = new NewTaskRow(this.id, this.userId,'','','','','','','');
   }
+
+  // updateTaskStatusId(id: number, taskStatusId: string, event: any) {
+  //   console.log("taskStatusId:"+this.statsCardForm.get("taskStatusId")!.value);
+  //   const editField = this.statsCardForm.get("taskStatusId")!.value;
+  //   this.elements[id][taskStatusId] = editField;
+  //   console.log(this.elements);
+  // }
+
+  // changeTaskStatusId(id: number, taskStatusId: string, event: any) {
+  //   this.editField = event.target.textContent;   
+  // }
+
+  // updateDueDate(id: number, dueDate: string, event: any) {
+  //   console.log("dueDate:"+this.statsCardForm.get("dueDate")!.value);
+  //   const editField = this.statsCardForm.get("dueDate")!.value;
+  //   this.elements[id][dueDate] = editField;
+  //   console.log(this.elements);
+  //   this.updateTask(this.elements);
+  // }
+
+  // changeDueDate(id: number, dueDate: string, event: any) {
+  //   this.editField = event.target.textContent;   
+  // }
+
+
+  updateList(id: number, property: string, event: any) {
+    const editField = event.target.textContent;
+    this.elements[id][property] = editField;
+    console.log(this.elements);
+    this.todo = this.elements;
+  }
+
+  changeValue(id: number, property: any, event: any) {
+    this.editField = event.target.textContent;
+  }
+ 
+  
+  save() {
+    this.updateTask(this.elements);
+  }
+
+  updateTask(paramBody){
+    this.dashboardService.updateTask(paramBody).subscribe(
+      data => {
+        this.map = data;
+        console.log(data);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.success(this.map.responseMessage, 'Success!', options);
+      }, (error: any) => {
+        console.log(error);
+        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.error(error, 'Sorry!', options);
+      }
+    );
+  }
+
 
   editRow(el: any) {
     const elementIndex = this.elements.findIndex((elem: any) => el === elem);
@@ -206,39 +266,6 @@ getAllTaskByUserIdService() {
   }
  
 
-  updateTask(paramBody){
-    this.dashboardService.updateTask(paramBody).subscribe(
-      data => {
-        this.map = data;
-        console.log(data);
-        const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
-        this.toastrService.clear();
-        this.toastrService.success(this.map.responseMessage, 'Success!', options);
-      }, (error: any) => {
-        console.log(error);
-        const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
-        this.toastrService.clear();
-        this.toastrService.error(error, 'Sorry!', options);
-      }
-    );
-  }
-
-
-  updateList(id: number, property: string, event: any) {
-    const editField = event.target.textContent;
-    this.elements[id][property] = editField;
-    console.log(this.elements);
-    this.todo = this.elements;
-    // this.updateTask(this.todo);
-  }
-
-  changeValue(id: number, property: any, event: any) {
-    this.editField = event.target.textContent;
-  }
- 
-  save() {
-    this.updateTask(this.todo);
-  }
 
   deleteTask(id: any) {
     console.log(`delete todo ${id}`);

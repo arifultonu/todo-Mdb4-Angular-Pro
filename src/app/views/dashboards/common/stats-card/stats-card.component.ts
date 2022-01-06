@@ -240,7 +240,7 @@ export class StatsCardComponent implements OnInit {
     this.elements[id][property] = editField;
     console.log(this.elements);
     this.todo = this.elements;
-    //this.updateTask(this.todo);
+    // this.updateTask(this.todo);
   }
 
   changeValue(id: number, property: any, event: any) {
@@ -248,7 +248,7 @@ export class StatsCardComponent implements OnInit {
   }
 
   save() {
-    this.updateTask(this.todo);
+    this.updateTask(this.elements);
   }
 
   deleteTask(id: any) {

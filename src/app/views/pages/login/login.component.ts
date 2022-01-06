@@ -88,5 +88,4 @@ export class LoginComponent implements OnInit {
     this.modalRef = this.modalService.show(UserRegistrationModalComponent, '');
   }
 
-
 }

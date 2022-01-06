@@ -29,7 +29,7 @@
       <div class="md-form form-sm">
         <textarea id="comments" type="text" class="md-textarea form-control form-control-sm" rows="1"
           formControlName="comments" mdbInput mdbValidate [validateSuccess]="false"></textarea>
-        <label for="comments">Comment:</label>
+        <label for="comments">+ Comment:</label>
         <mdb-error *ngIf="comments.invalid && (comments.dirty || comments.touched)">Input is required</mdb-error>
       </div>
 
