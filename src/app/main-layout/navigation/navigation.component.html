@@ -10,9 +10,7 @@
                     <h3>
                         <a class="breadcrumbs breadcrumb-dn mr-auto" routerLink="/task-dashboard" href="#" routerLinkActive="active">
                             <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" alt="todo">
-                          </a>
-                        <!-- <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center"
-                            alt="e-Swift"> -->
+                          </a>                        
                     </h3>
                 </div>
             </li>
@@ -43,7 +41,6 @@
 
                         <mdb-item *ngIf="jwtAuthenticationService.role == 'Admin'">
                             <mdb-item-head mdbWavesEffect>
-                                <!-- <mdb-icon fas icon="tachometer-alt" class="mr-1"></mdb-icon> -->
                                 <mdb-icon fas icon="cogs" class="mr-1"></mdb-icon> Setup
                             </mdb-item-head>
                             <mdb-item-body>
@@ -75,24 +72,21 @@
                             </mdb-item-head>
                             <mdb-item-body>
                                 <ul>
-                                    <li>
-                                        <a routerLinkActive="active" (click)="sidenav.toggle();" routerLink="#"
-                                            class="waves-effect" mdbWavesEffect>
-                                            <mdb-icon fas icon="arrow-right"></mdb-icon>Task Report</a>
+                                    <li  *ngIf="jwtAuthenticationService.role == 'Admin'">
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                        routerLink="task-report" class="waves-effect" mdbWavesEffect>
+                                        <mdb-icon fas icon="arrow-right"></mdb-icon>Task Report</a>
+
+                                    </li>
+                                    <li *ngIf="jwtAuthenticationService.role == 'User'">
+                                        <a routerLinkActive="active" (click)="sidenav.toggle();"
+                                        routerLink="task-report-user" class="waves-effect" mdbWavesEffect>
+                                        <mdb-icon fas icon="arrow-right"></mdb-icon>Task Report User</a>
+
                                     </li>
                                 </ul>
                             </mdb-item-body>
                         </mdb-item>
-
-
-                        <!-- <mdb-item class="no-collase">
-                            <mdb-item-head routerLinkActive="active" mdbWavesEffect routerLink="#"
-                                (click)="sidenav.toggle();">
-                                <i class="fa fa-th"></i> Settings
-                            </mdb-item-head>
-                            <mdb-item-body></mdb-item-body>
-                        </mdb-item> -->
-
                     </mdb-squeezebox>
                 </ul>
             </li>
@@ -120,26 +114,19 @@
             </a>
           </logo>
 
-
-        <!-- <logo>
-            <div class="breadcrumbs breadcrumb-dn mr-auto">
-                <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" height="30"
-                    alt="e-Swift">
-            </div>
-        </logo> -->
         <navlinks>
 
             <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav">
-                <!-- <li class="nav-item">
-                    <a class="nav-link waves-light" mdbWavesEffect>
+                <li class="nav-item">
+                    <!-- <a class="nav-link waves-light" mdbWavesEffect>
                         <mdb-icon far icon="bell" size="lg" class="red-text pr-1" aria-hidden="true"
                         ></mdb-icon>
-                    </a>
-                    <a class="nav-link waves-light" mdbWavesEffect *ngIf="">
+                    </a> -->
+                    <a class="nav-link waves-light" mdbWavesEffect>
                         <mdb-icon far icon="bell" size="lg" class="pr-1" aria-hidden="true"
                         ></mdb-icon>
                     </a>
-                </li> -->
+                </li>
                 <li class="nav-item">
                     <a class="nav-link waves-light" mdbWavesEffect>
                         <mdb-icon far icon="envelope" class="mr-1"></mdb-icon>
@@ -173,7 +160,7 @@
                         <!-- <a class="dropdown-item" routerLink="#" href="#" routerLinkActive="active">Home</a> -->
                         <a class="dropdown-item" routerLink="/profiles/profile1" href="#" routerLinkActive="active">Profile</a>
                         <a class="dropdown-item" routerLink="/task-dashboard" href="#"
-                            routerLinkActive="active">Dashboard</a>
+                            routerLinkActive="active">Task Board</a>
                         <a class="dropdown-item" routerLink="/login" href="#" routerLinkActive="active">Sign Out</a>
                     </div>
                 </li>

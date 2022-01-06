@@ -64,6 +64,8 @@ import { SetupTaskPriorityComponent } from './views/pages/setup-task-priority/se
 import { SetupTaskStatusComponent } from './views/pages/setup-task-status/setup-task-status.component';
 import { SetupUserComponent } from './views/pages/setup-user/setup-user.component';
 import { RouteGuardService } from './services/security/route-guard.service';
+import { TaskReportComponent } from './views/pages/task-report/task-report.component';
+import { TaskReportUserComponent } from './views/pages/task-report-user/task-report-user.component';
 
 
 const routes: Route[] = [
@@ -74,6 +76,8 @@ const routes: Route[] = [
   { path: 'setup-task-status', component: SetupTaskStatusComponent, canActivate:[RouteGuardService]},
   { path: 'setup-user', component: SetupUserComponent, canActivate:[RouteGuardService]},
   { path: 'setup', component: SetupComponent, canActivate:[RouteGuardService]}, 
+  { path: 'task-report', component: TaskReportComponent, canActivate:[RouteGuardService]}, 
+  { path: 'task-report-user', component: TaskReportUserComponent, canActivate:[RouteGuardService]}, 
 
   {
     path: 'dashboards',

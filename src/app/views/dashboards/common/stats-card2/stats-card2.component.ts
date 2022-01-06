@@ -105,31 +105,8 @@ export class StatsCard2Component implements OnInit {
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
-    this.taskrow = new NewTaskRow(this.id, this.userId,'','','','','','','');
+    this.taskrow = new NewTaskRow(this.id, this.userId,'','','','DD/MM/YYYY','DD/MM/YYYY','','');
   }
-
-  // updateTaskStatusId(id: number, taskStatusId: string, event: any) {
-  //   console.log("taskStatusId:"+this.statsCardForm.get("taskStatusId")!.value);
-  //   const editField = this.statsCardForm.get("taskStatusId")!.value;
-  //   this.elements[id][taskStatusId] = editField;
-  //   console.log(this.elements);
-  // }
-
-  // changeTaskStatusId(id: number, taskStatusId: string, event: any) {
-  //   this.editField = event.target.textContent;   
-  // }
-
-  // updateDueDate(id: number, dueDate: string, event: any) {
-  //   console.log("dueDate:"+this.statsCardForm.get("dueDate")!.value);
-  //   const editField = this.statsCardForm.get("dueDate")!.value;
-  //   this.elements[id][dueDate] = editField;
-  //   console.log(this.elements);
-  //   this.updateTask(this.elements);
-  // }
-
-  // changeDueDate(id: number, dueDate: string, event: any) {
-  //   this.editField = event.target.textContent;   
-  // }
 
 
   updateList(id: number, property: string, event: any) {
@@ -141,8 +118,7 @@ export class StatsCard2Component implements OnInit {
 
   changeValue(id: number, property: any, event: any) {
     this.editField = event.target.textContent;
-  }
- 
+  } 
   
   save() {
     this.updateTask(this.elements);
@@ -182,6 +158,7 @@ export class StatsCard2Component implements OnInit {
 
   
 getAllTaskByUserIdService() {
+  console.log("this.AssignUserId: " + this.userId);
     this.dashboardService.getAllTaskByAssignUserIdService(this.userId).subscribe(data => {
       this.map = data;
       this.elements = this.map;
@@ -263,9 +240,7 @@ getAllTaskByUserIdService() {
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
-  }
- 
-
+  } 
 
   deleteTask(id: any) {
     console.log(`delete todo ${id}`);

@@ -75,6 +75,8 @@ import { SetupTaskPriorityComponent } from './pages/setup-task-priority/setup-ta
 import { SetupTaskStatusComponent } from './pages/setup-task-status/setup-task-status.component';
 import { SetupUserComponent } from './pages/setup-user/setup-user.component';
 import { UserRegistrationModalComponent } from './pages/user-registration-modal/user-registration-modal.component';
+import { TaskReportComponent } from './pages/task-report/task-report.component';
+import { TaskReportUserComponent } from './pages/task-report-user/task-report-user.component';
 
 @NgModule({
   imports: [
@@ -157,6 +159,8 @@ import { UserRegistrationModalComponent } from './pages/user-registration-modal/
     SetupTaskStatusComponent,
     SetupUserComponent,
     UserRegistrationModalComponent,
+    TaskReportComponent,
+    TaskReportUserComponent,
   ],
   exports: [
     FooterComponent,

@@ -107,7 +107,7 @@ export class StatsCardComponent implements OnInit {
     this.getAllUserDataList();
     this.getAllPriorityDataList();
     this.getAllStatusDataList();
-    this.taskrow = new NewTaskRow(this.id, this.userId, '', '', '', '', '', '', '');
+    this.taskrow = new NewTaskRow(this.id, this.userId, '', '', '', 'DD/MM/YYYY', 'DD/MM/YYYY', '', '');
   }
 
   public myDatePickerOptions: IMyOptions = {
@@ -224,7 +224,7 @@ export class StatsCardComponent implements OnInit {
         const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
         this.toastrService.clear();
         this.toastrService.success(this.map.responseMessage, 'Success!', options);
-        // this.ngOnInit();
+        this.ngOnInit();
       }, (error: any) => {
         console.log(error);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };

@@ -140,10 +140,10 @@ export class SetupUserComponent implements OnInit {
 
   update(id: number, property: string, event: any) {
     const editField = event.target.textContent;
-    this.elements[id][property] = editField;
+    this.elements[id][property.trim()] = editField;
     console.log(this.elements);
-    this.user = this.elements;
-    this.updateUserService(this.user);
+    // this.user = this.elements;
+    this.updateUserService(this.elements);
   }
 
   changeValue(id: number, property: any, event: any) {

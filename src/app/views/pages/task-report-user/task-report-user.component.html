@@ -1,0 +1,129 @@
+<section class="my-4">
+    <div class="d-flex flex-row-reverse my-2">
+        <button class="p-2 me-2" mdbBtn color="primary" size="sm" mdbWavesEffect 
+             (click)="printPreview();">Print Preview <mdb-icon fas icon="eye" class="me-2"></mdb-icon>
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2">
+            <logo>
+                <a class="breadcrumbs breadcrumb-dn mr-auto" routerLink="/task-dashboard" href="#"
+                    routerLinkActive="active">
+                    <img src="../../../assets/img/SME-Finance-ToDo-logo.png" class="img-fluid flex-center" height="30"
+                        alt="todo">
+                </a>
+            </logo>
+           
+        </div>
+        <div class="col-md-5 mr-auto p-2"> </div>
+    </div>
+</section>
+
+<hr/>
+
+<section>
+    <!-- <mdb-card cascade="true" narrower="true" class="mt-5 mb-5"> -->
+        <!-- <div
+            class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-center align-items-center">
+            <a href="" class="white-text mx-3" size="sm">All Task</a>
+        </div> -->
+
+        <div class="px-4">
+            <div class="table-wrapper">
+                <!-- <div class="row mt-0">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-6 mx-auto">
+                        <div class="md-form">
+                            <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()"
+                                id="search-input" mdbInput [ngModelOptions]="{standalone: true}">
+                            <label for="search-input">Search</label>
+                        </div>
+                    </div>                  
+
+                </div> -->
+                <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true"
+                    class="table-bordered table-responsive-md z-depth-1 text-center mb-3" small="true" mdbTableScroll
+                    scrollX="true" maxWidth="100%">
+
+                    <thead class="sticky-top black white-text">
+                        <tr>
+                            <th >Srl User
+                            </th>
+                            <th >Task
+                            </th>
+                            <th >Assignee
+                            </th>
+                            <th >Priority
+                            </th>
+                            <th >Status
+                            </th>
+                            <th >Assign Date
+                            </th>
+                            <th >Due Date
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody #row>
+                        <tr *ngFor="let el of elements; let i = index">
+                            <td class="text-center">
+                                {{i+1}}
+                            </td>
+                            <td class="text-left">
+                                {{el.taskDetails}}
+                            </td>
+                            <td class="text-center">
+                                <mdb-select [filterEnabled]="true" [options]="allUserListSelect"
+                                    [(ngModel)]="el.assignUserId" [ngModelOptions]="{standalone: true }"
+                                    placeholder="Select Assignee" disabled>
+                                </mdb-select>
+                            </td>
+                            <td class="text-center">
+                                <mdb-select [filterEnabled]="true" [options]="allPriorityListSelect"
+                                    [(ngModel)]="el.priorityId" [ngModelOptions]="{standalone: true }"
+                                    placeholder="Select Priority" disabled>
+                                </mdb-select>
+                            </td>
+                            <td class="text-center">
+                                <mdb-select [filterEnabled]="true" [options]="allStatusListSelect"
+                                    [(ngModel)]="el.taskStatusId" [ngModelOptions]="{standalone: true }"
+                                    placeholder="Select Status" disabled>
+                                </mdb-select>
+                            </td>
+
+                            <td class="text-left">
+                                {{el.assignDate}}
+                            </td>
+
+                            <td class="text-left">
+                                {{el.dueDate}}
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot class="grey lighten-5">
+                        <tr>
+                            <!-- <td colspan="7">
+                                <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
+                                    [searchDataSource]="elements">
+                                </mdb-table-pagination>
+                            </td> -->
+                        </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+        
+    <!-- </mdb-card> -->
+</section>
+
+
+

@@ -153,6 +153,8 @@ export class SetupTaskPriorityComponent implements OnInit {
         this.map = data;
         console.log(data);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.success('', 'Done!', options);
       }, (error: any) => {
         console.log(error);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };

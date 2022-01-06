@@ -141,8 +141,8 @@ export class SetupTaskStatusComponent implements OnInit {
     const editField = event.target.textContent;
     this.elements[id][property] = editField;
     console.log(this.elements);
-    this.taskStatus = this.elements;
-    this.updateTaskStatusService(this.taskStatus);
+    // this.taskStatus = this.elements;
+    this.updateTaskStatusService(this.elements);
   }
 
   changeValueTaskStatus(id: number, property: any, event: any) {
@@ -155,6 +155,8 @@ export class SetupTaskStatusComponent implements OnInit {
         this.map = data;
         console.log(data);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 5000, opacity: 1 };
+        this.toastrService.clear();
+        this.toastrService.success('', 'Done!', options);
       }, (error: any) => {
         console.log(error);
         const options = { closeButton: true, tapToDismiss: false, timeOut: 10000, opacity: 1 };
