@@ -73,4 +73,6 @@ enabled=1
     - this.cadDocumentUploadForm.controls.custInfoSearch.setValue('');
     - his.cadDocumentUploadForm.get("customerId")!.setValue(custCode);
 
+
+    ### cmd command: docker-compose up --build
     
