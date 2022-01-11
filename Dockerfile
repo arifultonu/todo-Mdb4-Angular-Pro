@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 # Create image based on the official Node 10 image from dockerhub
 FROM node:16.13.1
 
@@ -22,6 +23,14 @@ EXPOSE 4200
 
 # Serve the app
 CMD ["npm", "start"]
+=======
+FROM docker/whalesay:latest
+LABEL Name=toDoWebApplication Version=0.0.1
+RUN apt-get -y update && apt-get install -y fortunes
+CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
+
+
+>>>>>>> Stashed changes
 
 
 
@@ -43,9 +52,14 @@ CMD ["npm", "start"]
 # COPY --from=builder app/dist/todo-mdb4-angular-pro usr/share/nginx/html
 
 ##############
+<<<<<<< Updated upstream
 # stage 1
 # FROM node:latest as node
 # FROM node:v16.13.1
+=======
+# # stage 1
+# FROM node:latest as node
+>>>>>>> Stashed changes
 # WORKDIR /app
 # COPY . .
 # RUN npm install
@@ -55,7 +69,11 @@ CMD ["npm", "start"]
 # FROM nginx:alpine
 # COPY --from=node /app/dist/todo-mdb4-angular-pro /usr/share/nginx/html
 
+<<<<<<< Updated upstream
 ########################
+=======
+###############
+>>>>>>> Stashed changes
 # # stage 1
 # # FROM node:latest as node
 # FROM node:8.9.4
