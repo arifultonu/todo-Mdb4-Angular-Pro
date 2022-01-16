@@ -1,24 +1,53 @@
-version: '3.5' # specify docker-compose version
+version: "3.7"
 
-# Define the services/containers to be run
 services:
-  angular-service: # name of the first service
-    container_name: angular-container2
-    build: ./ # specify the directory of the Dockerfile
-    volumes: # Volume binding
-    - './:/usr/src/app'
+  docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
     ports:
-      - "4200:80" # specify port forewarding
-    command: >
-      bash -c "npm start"
-  # docker-nginx:
-  #   container_name: docker-nginx
-  #   build: ./
-  #   ports: 
-  #       - "80:80"
-  #   command: ["nginx", "-g", "daemon off;"]    
-  #   links: 
-  #       - angular-service
+      - 8000:8000
+    volumes:
+      - ./:/app
+
+###############################
 
 
+# version: '3.5' # specify docker-compose version
 
+# # Define the services/containers to be run
+# services:
+#   angular-service: # name of the first service
+#     container_name: angular-container2
+#     build: ./ # specify the directory of the Dockerfile
+#     volumes: # Volume binding
+#     - './:/usr/src/app'
+#     ports:
+#       - "4200:80" # specify port forewarding
+#     command: >
+#       bash -c "npm start"
+#   # docker-nginx:
+#   #   container_name: docker-nginx
+#   #   build: ./
+#   #   ports: 
+#   #       - "80:80"
+#   #   command: ["nginx", "-g", "daemon off;"]    
+#   #   links: 
+#   #       - angular-service
+
+################################
+
+# version: '3.7'
+# services:
+#   app:
+#     build: .
+#     command: sh -c "npm start"
+#     ports:
+#       - 4200:4200
+#     working_dir: /home/node/app
+#     volumes:
+#       - ./:/home/node/app
+#       - node_modules:/home/node/app/node_modules
+# volumes:
+#   node_modules:

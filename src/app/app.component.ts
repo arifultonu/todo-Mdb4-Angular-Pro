@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     });
 
 
-    this.bnIdle.startWatching(1800).subscribe((res) => {
+    this.bnIdle.startWatching(900).subscribe((res) => {
       if (res && jwtAuthenticationService.isUserLoggedIn()) {
         alert('Your Session has Expired!! Please Login Again to Proceed...');
         this.router.navigate(['login']);

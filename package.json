@@ -1,10 +1,10 @@
 {
-  "name": "todo-mdb4-angular-pro",
+  "name": "todomdb4angularpro",
   "version": "11.0.0",
   "license": "SEE LICENSE IN <license.pdf>",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

@@ -47,10 +47,10 @@ export class JwtAuthenticationService {
       `${JPA_API_URL}/authenticate`, { username, password }).pipe(
         map(
           data => {
-            console.log("user id: " + `${data.id}`);
-            console.log("userName: " + `${data.username}`);
-            console.log("userFullName: " + `${data.name}`);
-            console.log("role: " + `${data.role}`);
+            // console.log("user id: " + `${data.id}`);
+            // console.log("userName: " + `${data.username}`);
+            // console.log("userFullName: " + `${data.name}`);
+            // console.log("role: " + `${data.role}`);
             this.tokenVal = `${data.token}`;
             if (this.tokenVal.length > 0) {
               sessionStorage.setItem(AUTHENTICATED_USER_ID, `${data.id}`);
