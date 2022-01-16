@@ -1,38 +1,60 @@
 
-<<<<<<< Updated upstream
-# Create image based on the official Node 10 image from dockerhub
-FROM node:16.13.1
-
-# Create a directory where our app will be placed
-RUN mkdir -p /app
-
-# Change directory so that our commands run inside this new directory
+# Install the base requirements for the app.
+# This stage is to support development.
+FROM python:alpine AS base
 WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# Copy dependency definitions
-COPY package*.json /app/
+FROM node:12-alpine AS app-base
+WORKDIR /app
+COPY app/package.json app/yarn.lock ./
+COPY app/spec ./spec
+COPY app/src ./src
 
-# Install dependencies
-RUN npm install
+# Run tests to validate app
+FROM app-base AS test
+RUN apk add --no-cache python3 g++ make
+RUN yarn install
+RUN yarn test
 
-# Get all the code needed to run the app
-COPY . /app/
+# Clear out the node_modules and create the zip
+FROM app-base AS app-zip-creator
+COPY app/package.json app/yarn.lock ./
+COPY app/spec ./spec
+COPY app/src ./src
+RUN apk add zip && \
+    zip -r /app.zip /app
 
-# Expose the port the app runs in
-EXPOSE 4200
+# Dev-ready container - actual files will be mounted in
+FROM base AS dev
+CMD ["mkdocs", "serve", "-a", "0.0.0.0:8000"]
 
-# Serve the app
-CMD ["npm", "start"]
-=======
-FROM docker/whalesay:latest
-LABEL Name=toDoWebApplication Version=0.0.1
-RUN apt-get -y update && apt-get install -y fortunes
-CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
+# Do the actual build of the mkdocs site
+FROM base AS build
+COPY . .
+RUN mkdocs build
+
+# Extract the static content from the build
+# and use a nginx image to serve the content
+FROM nginx:alpine
+COPY --from=app-zip-creator /app.zip /usr/share/nginx/html/assets/app.zip
+COPY --from=build /app/site /usr/share/nginx/html
 
 
->>>>>>> Stashed changes
 
 
+
+# FROM node:lts
+# RUN mkdir /home/node/app && chown node:node /home/node/app
+# RUN mkdir /home/node/app/node_modules && chown node:node /home/node/app/node_modules
+# WORKDIR  /home/node/app
+# USER node
+# COPY --chown=node:node package.json package-lock.json ./
+# RUN npm ci --quiet
+# COPY --chown=node:node . .
+
+######################
 
 # FROM node:latest as builder
 
@@ -52,14 +74,9 @@ CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
 # COPY --from=builder app/dist/todo-mdb4-angular-pro usr/share/nginx/html
 
 ##############
-<<<<<<< Updated upstream
 # stage 1
 # FROM node:latest as node
 # FROM node:v16.13.1
-=======
-# # stage 1
-# FROM node:latest as node
->>>>>>> Stashed changes
 # WORKDIR /app
 # COPY . .
 # RUN npm install
@@ -69,11 +86,7 @@ CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
 # FROM nginx:alpine
 # COPY --from=node /app/dist/todo-mdb4-angular-pro /usr/share/nginx/html
 
-<<<<<<< Updated upstream
 ########################
-=======
-###############
->>>>>>> Stashed changes
 # # stage 1
 # # FROM node:latest as node
 # FROM node:8.9.4
