@@ -75,4 +75,12 @@ enabled=1
 
 
     ### cmd command: docker-compose up --build
+
+    //Docker his own tutorials:
+    CMD/Terminal: 
+    - docker run --name repo alpine/git clone https://github.com/arifultonu/todo-Mdb4-Angular-Pro
+    - docker cp repo:/git/getting-started/ .
+    - cd getting-started
+    - docker build -t docker101tutorial .
+    - docker run -d -p 80:80 --name docker-tutorial docker101tutorial
     
